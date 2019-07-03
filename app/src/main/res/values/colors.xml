@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#346df3</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#346df3</color>
+
+    <!--Basic color-->
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <!--Category color-->
+    <color name="contest">#346df3</color>
+    <color name="act">#fe6d6d</color>
+    <color name="club">#f7b631</color>
+    <color name="notice">#616161</color>
+    <color name="recruit">#5f26cd</color>
+    <color name="etc">#c4c4c4</color>
+    <color name="etcText">#707070</color>
+    <color name="passive">#dcdcdc</color>
+
+    <!--MyPage color-->
+    <!--Subscribe color-->
+    <color name="subscribe_banner">#343434</color>
+    <color name="subscribe_active_name">#515151</color>
+    <color name="subscribe_active_tag">#ababab</color>
+    <color name="subscribe_inactive">#c2c2c2</color>
+
+    <!--SsgSag color-->
+
+    <!--Calendar color-->
+    <color name="today">#1eca49</color>
+    <color name="click">#ababab</color>
+    <color name="dayOfWeek">#777777</color>
+    <color name="activeMonth">#666666</color>
+    <color name="passiveMonth">#d7d8d8</color>
+    <color name="sunday">#ff2a42</color>
+    <color name="saturday">#477cff</color>
+
+    <color name="selectedTabColor">#626aff</color>
+    <color name="unselectedTabColor">#777777</color>
+
+
+
+
+</resources>

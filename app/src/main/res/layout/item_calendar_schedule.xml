@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+                name="calendar"
+                type="com.ssgsag.data.model.calendar.Calendar"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp">
+
+        <LinearLayout
+                android:background="@drawable/card_border"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:id="@+id/item_calendar_schedule_iv_poster"
+                    android:layout_width="43dp"
+                    android:layout_height="61dp"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginVertical="7dp"
+                    app:glideImg="@{calendar.photoUrl}"/>
+
+            <LinearLayout
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="11dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                <TextView
+                        tools:text="카테고리"
+                        android:id="@+id/item_calendar_schedule_tv_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="11sp"
+                        android:textColor="#346df3"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        app:textByCate="@{calendar.categoryIdx}"
+                        app:textColorByCate="@{calendar.categoryIdx}"/>
+
+                <TextView
+                        tools:text="포스터 이름"
+                        android:id="@+id/item_calendar_schedule_tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="#3d3d3d"
+                        android:layout_marginStart="16dp"
+                        android:maxLines="1"
+                        android:text="@{calendar.posterName}"
+                        android:fontFamily="@font/noto_sans_kr_medium"/>
+
+                <TextView
+                        tools:text="기간"
+                        android:id="@+id/item_calendar_schedule_tv_term"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="11sp"
+                        android:textColor="#8b8b8b"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:maxLines="1"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        app:startDateFormat2="@{calendar.posterStartDate}"
+                        app:endDateFormat2="@{calendar.posterEndDate}"/>
+
+            </LinearLayout>
+
+            <ImageView
+                    android:id="@+id/item_calendar_schedule_iv_like"
+                    android:layout_gravity="center_vertical|end"
+                    android:src="@drawable/selector_navigation_ssg_sag"
+                    android:layout_width="20dp"
+                    android:layout_height="16.3dp"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginEnd="17dp"/>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

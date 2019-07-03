@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--app info-->
+    <string name="app_name">슥삭</string>
+
+    <!--coach text-->
+    <string name="coach_my_page_board">게시판 설정을 눌러\n관심있는 게시판을 팔로우해보세요.</string>
+    <string name="coach_my_page_job">관심직무를 선택하여\n스펙, 채용정보를 받아보세요.</string>
+    <string name="coach_job_field">관심있는 직무분야를 \n선택해주세요!</string>
+    <string name="coach_job_company">관심있는 기업의 형태도\n선택해주세요!</string>
+    <string name="coach_ssg_sag_o">O 버튼으로도 가능해요!</string>
+    <string name="coach_ssg_sag_x">X 버튼으로도 가능해요!</string>
+    <string name="coach_ssg_sag_return">되돌리기 버튼!</string>
+    <string name="coach_ssg_sag_detail">포스터의 오른쪽을 눌러\n세부정보를 볼수있어요.!</string>
+    <string name="coach_calendar_favorite">D-day와 상관없이\n상단에 고정시킬 수 있어요.</string>
+    <string name="coach_calendar_detail">일정을 눌러\n더 자세한 정보를 확인해보세요!</string>
+
+
+    <!--MyPage text-->
+    <string name="my_page_major_grade_format">%s %s학년</string>
+
+    <!--SsgSag text-->
+
+    <!--Calendar text-->
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+                name="posterDetail"
+                type="com.ssgsag.data.model.base.TitleContents"/>
+    </data>
+
+    <LinearLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#dcdcdb"/>
+
+        <TextView
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginBottom="12dp"
+                android:id="@+id/rv_poster_detail_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:lineHeight="25sp"
+                android:textColor="#B3505050"
+                android:letterSpacing="-0.02"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:text="@{posterDetail.title}"
+                tools:text="title"/>
+
+        <TextView
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginBottom="25dp"
+                android:id="@+id/rv_poster_detail_tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:lineHeight="25sp"
+                android:textColor="#D9505050"
+                android:letterSpacing="-0.03"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:text="@{posterDetail.contents}"
+                tools:text="contents"/>
+
+    </LinearLayout>
+</layout>
