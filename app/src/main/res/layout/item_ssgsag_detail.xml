@@ -3,8 +3,8 @@
 
     <data>
         <variable
-                name="posterDetail"
-                type="com.ssgsag.data.model.base.TitleContents"/>
+                name="ssgSagDetail"
+                type="com.ssgsag.data.model.item.ItemBase"/>
     </data>
 
     <LinearLayout
@@ -25,7 +25,7 @@
                 android:textColor="#B3505050"
                 android:letterSpacing="-0.02"
                 android:fontFamily="@font/noto_sans_kr_medium"
-                android:text="@{posterDetail.title}"
+                android:text="@{ssgSagDetail.title}"
                 tools:text ="title"/>
 
         <TextView
@@ -39,7 +39,7 @@
                 android:textColor="#D9505050"
                 android:letterSpacing="-0.03"
                 android:fontFamily="@font/noto_sans_kr_regular"
-                android:text="@{posterDetail.contents}"
+                android:text="@{ssgSagDetail.contents}"
                 tools:text ="contents"/>
 
     </LinearLayout>

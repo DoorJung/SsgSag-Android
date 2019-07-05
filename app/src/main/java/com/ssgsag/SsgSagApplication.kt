@@ -19,5 +19,9 @@ class SsgSagApplication : Application() {
 
     companion object {
         lateinit var globalApplication: SsgSagApplication
+        val ContestTitle = arrayListOf("주제", "지원자격", "시상내역")
+        val ActTitle = arrayListOf("지원자격", "활동내역", "혜택")
+        val ClubTitle = arrayListOf("활동분야", "모임시간", "혜택")
+        val RecruitTitle = arrayListOf("모집분야", "지원자격", "근무지역")
     }
 }

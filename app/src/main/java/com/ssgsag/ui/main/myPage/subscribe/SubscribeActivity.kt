@@ -51,7 +51,7 @@ class SubscribeActivity : BaseActivity<ActivitySubscribeBinding, SubscribeViewMo
     }
 
     override fun onItemClicked(item: Any?) {
-        viewModel.subscribe((item as Subscribe).interestIdx, (item as Subscribe).userIdx)
+        viewModel.subscribe((item as Subscribe).interestIdx, item.userIdx)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

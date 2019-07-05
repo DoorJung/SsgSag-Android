@@ -4,32 +4,31 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.ssgsag.BR
 import com.ssgsag.R
 import com.ssgsag.base.BaseRecyclerViewAdapter
-import com.ssgsag.data.model.base.TitleContents
+import com.ssgsag.data.model.item.ItemBase
 import com.ssgsag.data.model.posterDetail.PosterDetail
 import com.ssgsag.databinding.ItemPosterDetailBinding
-import com.ssgsag.util.extension.PosterExtension
+import com.ssgsag.databinding.ItemSsgsagDetailBinding
+import com.ssgsag.util.extension.getItemBase
 import org.jetbrains.anko.imageResource
-import org.jetbrains.anko.textColor
 
 @Suppress("UNCHECKED_CAST")
 @BindingAdapter("poster_detail")
 fun setPosterDetail(view: RecyclerView, poster: PosterDetail?) {
     view.run {
         adapter =
-            object : BaseRecyclerViewAdapter<TitleContents, ItemPosterDetailBinding>() {
+            object : BaseRecyclerViewAdapter<ItemBase, ItemSsgsagDetailBinding>() {
                 override val layoutResID: Int
                     get() = R.layout.item_ssgsag_detail
                 override val bindingVariableId: Int
-                    get() = BR.posterDetail
+                    get() = BR.ssgSagDetail
                 override val listener: OnItemClickListener?
                     get() = null
             }
         (this.adapter as? BaseRecyclerViewAdapter<Any, *>)?.run {
-            replaceAll(PosterExtension.getTitleContents(poster))
+            replaceAll(getItemBase(poster))
             notifyDataSetChanged()
         }
     }
