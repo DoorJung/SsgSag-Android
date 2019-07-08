@@ -1,4 +1,4 @@
-package com.ssgsag.util.extension
+package com.ssgsag.util.extensionFun
 
 import com.ssgsag.SsgSagApplication.Companion.ActTitle
 import com.ssgsag.SsgSagApplication.Companion.ClubTitle

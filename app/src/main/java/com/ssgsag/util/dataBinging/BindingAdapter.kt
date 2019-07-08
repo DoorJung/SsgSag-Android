@@ -3,13 +3,14 @@ package com.ssgsag.util.dataBinging
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ssgsag.R
 import com.ssgsag.base.BaseRecyclerViewAdapter
-import com.ssgsag.util.extension.dayOfWeekExtension
-import com.ssgsag.util.extension.getDateInfo
+import com.ssgsag.util.extensionFun.dayOfWeekExtension
+import com.ssgsag.util.extensionFun.getDateInfo
 import org.jetbrains.anko.textColor
 
 //View BindingAdapter
@@ -42,28 +43,42 @@ fun setGlideImg(view: ImageView, imgUrl: String?) {
 @BindingAdapter("textColorByCate")
 fun setTextColorByCate(view: TextView, categoryIdx: Int?) {
     when (categoryIdx) {
-        0 -> { view.textColor = view.context.getColor(R.color.contest) }
-        1 -> { view.textColor = view.context.getColor(R.color.act) }
-        2 -> { view.textColor = view.context.getColor(R.color.club) }
-        3 -> { view.textColor = view.context.getColor(R.color.notice) }
-        4 -> { view.textColor = view.context.getColor(R.color.recruit) }
-        5 -> { view.textColor = view.context.getColor(R.color.etcText) }
-        6 -> { view.textColor = view.context.getColor(R.color.club) }
-        7 -> { view.textColor = view.context.getColor(R.color.club) }
+        0 -> view.textColor = view.context.getColor(R.color.contest)
+        1 -> view.textColor = view.context.getColor(R.color.act)
+        2 -> view.textColor = view.context.getColor(R.color.club)
+        3 -> view.textColor = view.context.getColor(R.color.notice)
+        4 -> view.textColor = view.context.getColor(R.color.recruit)
+        5 -> view.textColor = view.context.getColor(R.color.etcText)
+        6 -> view.textColor = view.context.getColor(R.color.club)
+        7 -> view.textColor = view.context.getColor(R.color.club)
     }
 }
 
 @BindingAdapter("textByCate")
 fun setTextByCate(view: TextView, categoryIdx: Int?) {
     when (categoryIdx) {
-        0 -> { view.text = "공모전" }
-        1 -> { view.text = "대외활동" }
-        2 -> { view.text = "동아리" }
-        3 -> { view.text = "교내공지" }
-        4 -> { view.text = "채용" }
-        5 -> { view.text = "기타" }
-        6 -> { view.text = "동아리" }
-        7 -> { view.text = "슥삭" }
+        0 -> view.text = "공모전"
+        1 -> view.text = "대외활동"
+        2 -> view.text = "동아리"
+        3 -> view.text = "교내공지"
+        4 -> view.text = "채용"
+        5 -> view.text = "기타"
+        6 -> view.text = "동아리"
+        7 -> view.text = "슥삭"
+    }
+}
+
+@BindingAdapter("cateBg")
+fun setCateBg(view: CardView, categoryIdx: Int?) {
+    when (categoryIdx) {
+        0 -> view.setCardBackgroundColor(view.context.getColor(R.color.contestBg))
+        1 -> view.setCardBackgroundColor(view.context.getColor(R.color.actBg))
+        2 -> view.setCardBackgroundColor(view.context.getColor(R.color.clubBg))
+        3 -> view.setCardBackgroundColor(view.context.getColor(R.color.noticeBg))
+        4 -> view.setCardBackgroundColor(view.context.getColor(R.color.recruitBg))
+        5 -> view.setCardBackgroundColor(view.context.getColor(R.color.etcBg))
+        6 -> view.setCardBackgroundColor(view.context.getColor(R.color.clubBg))
+        7 -> view.setCardBackgroundColor(view.context.getColor(R.color.clubBg))
     }
 }
 

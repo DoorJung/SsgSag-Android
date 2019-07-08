@@ -10,11 +10,17 @@
 
     <!--Category color-->
     <color name="contest">#346df3</color>
+    <color name="contestBg">#0c346df3</color>
     <color name="act">#fe6d6d</color>
+    <color name="actBg">#0cfe6d6d</color>
     <color name="club">#f7b631</color>
+    <color name="clubBg">#0cf7b631</color>
     <color name="notice">#616161</color>
+    <color name="noticeBg">#0c616161</color>
     <color name="recruit">#5f26cd</color>
+    <color name="recruitBg">#0c5f26cd</color>
     <color name="etc">#c4c4c4</color>
+    <color name="etcBg">#0cc4c4c4</color>
     <color name="etcText">#707070</color>
     <color name="passive">#dcdcdc</color>
 

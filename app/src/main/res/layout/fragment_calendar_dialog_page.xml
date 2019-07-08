@@ -49,6 +49,7 @@
                         android:fontFamily="@font/noto_sans_kr_regular"
                         android:textColor="#979797"
                         android:layout_centerInParent="true"
+                        android:gravity="center"
                         android:text="이날은 일정이 없네요.\n슥삭하러 가볼까요?"
                         app:noDataDirective="@{vm.calendar}"/>
 

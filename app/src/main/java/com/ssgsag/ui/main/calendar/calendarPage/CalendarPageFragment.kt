@@ -14,7 +14,7 @@ import com.ssgsag.data.model.date.Date
 import com.ssgsag.databinding.ItemCalendarDateBinding
 import com.ssgsag.ui.main.calendar.CalendarFragment
 import com.ssgsag.ui.main.calendar.calendarDialog.CalendarDialogFragment
-import com.ssgsag.util.view.NonScrollGridLayoutManagerManager
+import com.ssgsag.util.view.NonScrollGridLayoutManager
 
 class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarPageViewModel>(),
     BaseRecyclerViewAdapter.OnItemClickListener {
@@ -204,7 +204,7 @@ class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarP
                 override val listener: OnItemClickListener?
                     get() = this@CalendarPageFragment
             }
-            layoutManager = NonScrollGridLayoutManagerManager(activity!!, 7)
+            layoutManager = NonScrollGridLayoutManager(activity!!, 7)
             (this.adapter as? BaseRecyclerViewAdapter<Any, *>)?.run {
                 replaceAll(dataList)
                 notifyDataSetChanged()

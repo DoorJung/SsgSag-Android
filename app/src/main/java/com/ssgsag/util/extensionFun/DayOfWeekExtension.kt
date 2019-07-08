@@ -1,4 +1,4 @@
-package com.ssgsag.util.extension
+package com.ssgsag.util.extensionFun
 
 import java.util.*
 import kotlin.collections.ArrayList

@@ -1,6 +1,5 @@
 package com.ssgsag.ui.main.calendar.calendarDetail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.ssgsag.BR
@@ -10,8 +9,7 @@ import com.ssgsag.base.BaseRecyclerViewAdapter
 import com.ssgsag.data.model.item.ItemBase
 import com.ssgsag.databinding.ActivityCalendarDetailBinding
 import com.ssgsag.databinding.ItemPosterDetailBinding
-import com.ssgsag.databinding.ItemSsgsagDetailBinding
-import com.ssgsag.ui.main.MainViewModel
+import com.ssgsag.util.view.NonScrollLinearLayoutManager
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, CalendarDetailViewModel>() {
@@ -22,6 +20,7 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewDataBinding.vm = viewModel
+        viewDataBinding.actCalDetailRv.layoutManager = NonScrollLinearLayoutManager(this)
 
         //Toolbar
         setSupportActionBar(viewDataBinding.actCalDetailTb)
