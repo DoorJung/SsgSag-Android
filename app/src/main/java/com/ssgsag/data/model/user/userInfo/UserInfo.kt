@@ -1,4 +1,4 @@
-package com.ssgsag.data.model.userInfo
+package com.ssgsag.data.model.user.userInfo
 
 data class UserInfo(
     val userIdx: Int,

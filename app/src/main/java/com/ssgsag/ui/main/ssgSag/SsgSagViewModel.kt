@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ssgsag.base.BaseViewModel
 import com.ssgsag.data.model.poster.PosterRepository
-import com.ssgsag.data.model.posterDetail.PosterDetail
+import com.ssgsag.data.model.poster.posterDetail.PosterDetail
 import com.ssgsag.util.scheduler.SchedulerProvider
 
 class SsgSagViewModel(

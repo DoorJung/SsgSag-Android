@@ -8,7 +8,7 @@ import com.ssgsag.BR
 import com.ssgsag.R
 import com.ssgsag.base.BaseRecyclerViewAdapter
 import com.ssgsag.data.model.item.ItemBase
-import com.ssgsag.data.model.posterDetail.PosterDetail
+import com.ssgsag.data.model.poster.posterDetail.PosterDetail
 import com.ssgsag.databinding.ItemSsgsagDetailBinding
 import com.ssgsag.util.extensionFun.getItemBase
 import org.jetbrains.anko.imageResource

@@ -2,13 +2,16 @@ package com.ssgsag.data.remote.api
 
 import com.ssgsag.SsgSagApplication.Companion.globalApplication
 import com.ssgsag.R
+import com.ssgsag.data.model.base.IntResponse
 import com.ssgsag.data.model.base.NullResponse
 import com.ssgsag.data.model.calendar.CalendarResponse
 import com.ssgsag.data.model.poster.PosterResponse
-import com.ssgsag.data.model.posterDetail.PosterDetailResponse
+import com.ssgsag.data.model.poster.posterDetail.PosterDetailResponse
 import com.ssgsag.data.model.subscribe.SubscribeResponse
-import com.ssgsag.data.model.userInfo.UserInfoResponse
+import com.ssgsag.data.model.user.userInfo.UserInfoResponse
 import io.reactivex.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,6 +27,10 @@ interface NetworkService {
     //region 회원
     //이메일 중복확인
     //회원 가입
+    @GET("/user")
+    fun signUpResponse(
+        @Header("Content-Type") content_type : String
+    ):  Single<NullResponse>
     //회원 조회
     @GET("/user")
     fun userInfoResponse(
@@ -33,6 +40,18 @@ interface NetworkService {
     //회원 관심직무 재등록
     //회원 관심분야 재등록
     //회원 정보 수정
+    @Multipart
+    @POST("/user/update")
+    fun editUserInfoResponse(
+        @Header("Authorization") token: String,
+        @Part("userNickname") userNickname: RequestBody,
+        @Part("userUniv") userUniv: RequestBody,
+        @Part("userMajor") userMajor: RequestBody,
+        @Part("userStudentNum") userStudentNum: RequestBody,
+        @Part("userGrade") userGrade: RequestBody,
+        @Part("userProfileUrl") userProfileUrl: RequestBody,
+        @Part profile: MultipartBody.Part?
+    ): Single<NullResponse>
     //회원 탈퇴
     //마이페이지 사진등록
     //구독 조회
@@ -72,7 +91,7 @@ interface NetworkService {
         @Header("Authorization") token: String,
         @Query("posterIdx") posterIdx: Int,
         @Query("like") like: Int
-    ): Single<NullResponse>
+    ): Single<IntResponse>
     //endregion
 
     //region 캘린더

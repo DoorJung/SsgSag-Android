@@ -6,7 +6,7 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ssgsag.R
-import com.ssgsag.data.model.posterDetail.PosterDetail
+import com.ssgsag.data.model.poster.posterDetail.PosterDetail
 import com.ssgsag.databinding.ItemSsgsagBinding
 
 

@@ -1,11 +1,4 @@
-package com.ssgsag.data.model.posterDetail
-
-import android.util.Log
-import android.view.View
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableInt
-import org.intellij.lang.annotations.Identifier
-import java.lang.Exception
+package com.ssgsag.data.model.poster.posterDetail
 
 data class PosterDetail(
     val posterIdx: Int,

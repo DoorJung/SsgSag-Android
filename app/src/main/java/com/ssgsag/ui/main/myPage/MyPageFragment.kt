@@ -18,6 +18,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding, MyPageViewModel>() {
         super.onActivityCreated(savedInstanceState)
         viewDataBinding.vm = viewModel
 
+        viewDataBinding.fragMyPageClAccount.setOnClickListener {
+            viewModel.editUserInfo()
+        }
+
         viewModel.activityToStart.observe(this, Observer { value ->
             val intent = Intent(activity, value.first.java)
             value.second?.let {

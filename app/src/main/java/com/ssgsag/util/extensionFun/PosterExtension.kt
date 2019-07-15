@@ -5,7 +5,7 @@ import com.ssgsag.SsgSagApplication.Companion.ClubTitle
 import com.ssgsag.SsgSagApplication.Companion.ContestTitle
 import com.ssgsag.SsgSagApplication.Companion.RecruitTitle
 import com.ssgsag.data.model.item.ItemBase
-import com.ssgsag.data.model.posterDetail.PosterDetail
+import com.ssgsag.data.model.poster.posterDetail.PosterDetail
 import org.json.JSONArray
 
 fun getItemBase(poster: PosterDetail?): ArrayList<ItemBase> {

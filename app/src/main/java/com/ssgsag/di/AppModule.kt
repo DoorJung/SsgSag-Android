@@ -5,12 +5,10 @@ import com.ssgsag.data.model.calendar.CalendarRepository
 import com.ssgsag.data.model.calendar.CalendarRepositoryImpl
 import com.ssgsag.data.model.poster.PosterRepository
 import com.ssgsag.data.model.poster.PosterRepositoryImpl
-import com.ssgsag.data.model.posterDetail.PosterDetailRepository
-import com.ssgsag.data.model.posterDetail.PosterDetailRepositoryImpl
 import com.ssgsag.data.model.subscribe.SubscribeRepository
 import com.ssgsag.data.model.subscribe.SubscribeRepositoryImpl
-import com.ssgsag.data.model.userInfo.UserInfoRepository
-import com.ssgsag.data.model.userInfo.UserInfoRepositoryImpl
+import com.ssgsag.data.model.user.UserRepository
+import com.ssgsag.data.model.user.UserRepositoryImpl
 import com.ssgsag.data.remote.api.NetworkService
 import com.ssgsag.ui.main.MainViewModel
 import com.ssgsag.ui.main.calendar.CalendarViewModel
@@ -47,18 +45,13 @@ val factoryModule = module {
             get(), get()
         )
     }
-    factory<UserInfoRepository> {
-        UserInfoRepositoryImpl(
+    factory<UserRepository> {
+        UserRepositoryImpl(
             get(), get()
         )
     }
     factory<PosterRepository> {
         PosterRepositoryImpl(
-            get(), get()
-        )
-    }
-    factory<PosterDetailRepository> {
-        PosterDetailRepositoryImpl(
             get(), get()
         )
     }

@@ -1,4 +1,4 @@
-package com.ssgsag.data.model.posterDetail
+package com.ssgsag.data.model.poster.posterDetail
 
 data class PosterDetailResponse(
     val status : Int,

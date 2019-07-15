@@ -1,6 +1,6 @@
 package com.ssgsag.data.model.poster
 
-import com.ssgsag.data.model.posterDetail.PosterDetail
+import com.ssgsag.data.model.poster.posterDetail.PosterDetail
 
 
 data class Poster(
