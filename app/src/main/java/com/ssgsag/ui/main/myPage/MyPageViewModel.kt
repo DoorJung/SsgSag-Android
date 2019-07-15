@@ -47,27 +47,6 @@ class MyPageViewModel(
         )
     }
 
-    fun editUserInfo() {
-        val userNickname = RequestBody.create(MediaType.parse("multipart/form-data"), "도어정")
-        val userUniv = RequestBody.create(MediaType.parse("multipart/form-data"), "서울과학기술대학교(본교)")
-        val userMajor = RequestBody.create(MediaType.parse("multipart/form-data"), "컴퓨터공학과")
-        val userStudentNum = RequestBody.create(MediaType.parse("multipart/form-data"), "17101209")
-        val userGrade = RequestBody.create(MediaType.parse("multipart/form-data"), "3")
-        val userProfileUrl = RequestBody.create(MediaType.parse("multipart/form-data"), "https://s3.ap-northeast-2.amazonaws.com/project-hs/default_profile.png")
-
-        addDisposable(repository.editUserInfo(userNickname, userUniv , userMajor, userStudentNum, userGrade, userProfileUrl, null)
-            .subscribeOn(schedulerProvider.io())
-            .observeOn(schedulerProvider.mainThread())
-            .doOnSubscribe { showProgress() }
-            .doOnTerminate { hideProgress() }
-            .subscribe({
-                Log.d(TAG, it.toString())
-            }, {
-                Log.d(TAG, it.toString())
-            })
-        )
-    }
-
     fun navigate(idx: Int) {
         when (idx) {
             1 -> _activityToStart.postValue(Pair(SubscribeActivity::class, null))
