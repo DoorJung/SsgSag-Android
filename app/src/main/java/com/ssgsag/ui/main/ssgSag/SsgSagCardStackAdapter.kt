@@ -1,18 +1,18 @@
 package com.ssgsag.ui.main.ssgSag
 
 import android.content.Context
-import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ssgsag.R
 import com.ssgsag.data.model.poster.posterDetail.PosterDetail
 import com.ssgsag.databinding.ItemSsgsagBinding
+import com.ssgsag.util.view.NonScrollLinearLayoutManager
 
-
-
-class SsgSagCardStackAdapter(val ctx: Context, val listener: OnItemClickListener?) :
+class SsgSagCardStackAdapter(val ctx: Context) :
     RecyclerView.Adapter<SsgSagCardStackAdapter.ViewHolder>() {
+
+    private var itemTouch: Boolean = false
 
     val items = ArrayList<PosterDetail>()
 
@@ -37,84 +37,60 @@ class SsgSagCardStackAdapter(val ctx: Context, val listener: OnItemClickListener
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.dataBinding.poster = items[position]
-        holder.dataBinding.rvPosterItemLlRightContent.visibility = View.GONE
-        holder.dataBinding.rvPosterItemRlLeftContent.visibility = View.VISIBLE
+        holder.dataBinding.itemSsgsagLlRightContent.visibility = View.GONE
+        holder.dataBinding.itemSsgsagRlLeftContent.visibility = View.VISIBLE
 
-//        holder.dataBinding.rvPosterItemRvContent.setOnTouchListener { v, event ->
-//            when (event.action) {
-//                MotionEvent.ACTION_DOWN -> {
-//                    return@setOnTouchListener true
-//                }
-//                MotionEvent.ACTION_MOVE -> {
-//                    return@setOnTouchListener false
-//                }
-//                MotionEvent.ACTION_UP -> {
-//                    if(holder.dataBinding.rvPosterItemRlLeftContent.visibility == View.VISIBLE) {
-//                        holder.dataBinding.rvPosterItemRlLeftContent.visibility = View.GONE
-//                        holder.dataBinding.rvPosterItemLlRightContent.visibility = View.VISIBLE
-//                    } else {
-//                        holder.dataBinding.rvPosterItemLlRightContent.visibility = View.GONE
-//                        holder.dataBinding.rvPosterItemRlLeftContent.visibility = View.VISIBLE
-//                    }
-//                    return@setOnTouchListener true
-//                }
-//                else -> {
-//                    return@setOnTouchListener false
-//                }
-//            }
-//        }
-        val gestureDetector = GestureDetector(ctx, SingleTapConfirm())
-        holder.dataBinding.rvPosterItemRvContent.setOnTouchListener(object : View.OnTouchListener {
-            override fun onTouch(v: View, event: MotionEvent): Boolean {
-                if (gestureDetector.onTouchEvent(event)) {
-                    holder.itemView.performClick()
-                }
-                Log.d("fasd", event.toString())
-                return false
+        holder.dataBinding.rvPosterItemRvContent.layoutManager = NonScrollLinearLayoutManager(ctx)
+
+        val onScrollChangeListener = object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
             }
-        })
 
-        holder.itemView.setOnClickListener {
-            if(holder.dataBinding.rvPosterItemRlLeftContent.visibility == View.VISIBLE) {
-                holder.dataBinding.rvPosterItemRlLeftContent.visibility = View.GONE
-                holder.dataBinding.rvPosterItemLlRightContent.visibility = View.VISIBLE
-            } else {
-                holder.dataBinding.rvPosterItemLlRightContent.visibility = View.GONE
-                holder.dataBinding.rvPosterItemRlLeftContent.visibility = View.VISIBLE
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                itemTouch = false
             }
         }
 
-//        holder.itemView.setOnTouchListener { v, event ->
-//            when (event.action) {
-//                MotionEvent.ACTION_DOWN -> {
-//                    return@setOnTouchListener true
-//                }
-//                MotionEvent.ACTION_UP -> {//클릭
-//                    if(holder.dataBinding.rvPosterItemRlLeftContent.visibility == View.VISIBLE) {
-//                        holder.dataBinding.rvPosterItemRlLeftContent.visibility = View.GONE
-//                        holder.dataBinding.rvPosterItemLlRightContent.visibility = View.VISIBLE
-//                    } else {
-//                        holder.dataBinding.rvPosterItemLlRightContent.visibility = View.GONE
-//                        holder.dataBinding.rvPosterItemRlLeftContent.visibility = View.VISIBLE
-//                    }
-//                    return@setOnTouchListener true
-//                }
-//                else -> {
-//                    return@setOnTouchListener false
-//                }
-//            }
-//        }
+        val onItemTouchListener = object : RecyclerView.OnItemTouchListener {
+            override fun onInterceptTouchEvent(parent: RecyclerView, evt: MotionEvent): Boolean {
+                if (MotionEvent.ACTION_UP == evt.action && itemTouch) {
+                    holder.dataBinding.itemSsgsagRlLeftContent.visibility = View.VISIBLE
+                    holder.dataBinding.itemSsgsagLlRightContent.visibility = View.GONE
+                } else if (MotionEvent.ACTION_DOWN == evt.action) {
+                    itemTouch = true
+                }
+                return false
+            }
+            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {}
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
+        }
+        holder.dataBinding.rvPosterItemRvContent.addOnItemTouchListener(onItemTouchListener)
+        holder.dataBinding.rvPosterItemRvContent.addOnScrollListener(onScrollChangeListener)
+
+
+        holder.itemView.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    return@setOnTouchListener true
+                }
+                MotionEvent.ACTION_UP -> {
+                    if (holder.dataBinding.itemSsgsagLlRightContent.visibility == View.VISIBLE) {
+                        holder.dataBinding.itemSsgsagRlLeftContent.visibility = View.VISIBLE
+                        holder.dataBinding.itemSsgsagLlRightContent.visibility = View.GONE
+                    } else {
+                        holder.dataBinding.itemSsgsagRlLeftContent.visibility = View.GONE
+                        holder.dataBinding.itemSsgsagLlRightContent.visibility = View.VISIBLE
+                    }
+                    return@setOnTouchListener true
+                }
+                else -> {
+                    return@setOnTouchListener false
+                }
+            }
+        }
     }
 
     inner class ViewHolder(val dataBinding: ItemSsgsagBinding) : RecyclerView.ViewHolder(dataBinding.root)
-
-    interface OnItemClickListener {
-        fun onItemClicked(item: Any?)
-    }
-}
-
-private class SingleTapConfirm : GestureDetector.SimpleOnGestureListener() {
-    override fun onSingleTapUp(e: MotionEvent): Boolean {
-        return true
-    }
 }

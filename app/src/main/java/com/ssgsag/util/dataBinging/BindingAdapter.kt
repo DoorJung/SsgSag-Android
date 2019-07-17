@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ssgsag.R
 import com.ssgsag.base.BaseRecyclerViewAdapter
-import com.ssgsag.util.extensionFun.dayOfWeekExtension
-import com.ssgsag.util.extensionFun.getDateInfo
+import com.ssgsag.util.extensionFunction.dayOfWeekExtension
+import com.ssgsag.util.extensionFunction.getDateInfo
+import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.textColor
 
 //View BindingAdapter
@@ -68,7 +69,7 @@ fun setTextByCate(view: TextView, categoryIdx: Int?) {
     }
 }
 
-@BindingAdapter("cateBg")
+@BindingAdapter("cateCardBg")
 fun setCateBg(view: CardView, categoryIdx: Int?) {
     when (categoryIdx) {
         0 -> view.setCardBackgroundColor(view.context.getColor(R.color.contestBg))
@@ -79,6 +80,20 @@ fun setCateBg(view: CardView, categoryIdx: Int?) {
         5 -> view.setCardBackgroundColor(view.context.getColor(R.color.etcBg))
         6 -> view.setCardBackgroundColor(view.context.getColor(R.color.clubBg))
         7 -> view.setCardBackgroundColor(view.context.getColor(R.color.clubBg))
+    }
+}
+
+@BindingAdapter("cateBg")
+fun setCateBg(view: View, categoryIdx: Int?) {
+    when (categoryIdx) {
+        0 -> view.backgroundColor = view.context.getColor(R.color.contest)
+        1 -> view.backgroundColor = view.context.getColor(R.color.act)
+        2 -> view.backgroundColor = view.context.getColor(R.color.club)
+        3 -> view.backgroundColor = view.context.getColor(R.color.notice)
+        4 -> view.backgroundColor = view.context.getColor(R.color.recruit)
+        5 -> view.backgroundColor = view.context.getColor(R.color.etc)
+        6 -> view.backgroundColor = view.context.getColor(R.color.club)
+        7 -> view.backgroundColor = view.context.getColor(R.color.club)
     }
 }
 

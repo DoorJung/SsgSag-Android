@@ -22,6 +22,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tabTextColor="@color/unselectedTabColor"
                 app:tabSelectedTextColor="@color/selectedTabColor"
+                app:tabMode="scrollable"
                 app:tabIndicatorFullWidth="false"/>
 
         <LinearLayout

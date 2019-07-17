@@ -3,9 +3,13 @@ package com.ssgsag.ui.main.ssgSag
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import com.ssgsag.BR
 import com.ssgsag.R
 import com.ssgsag.base.BaseFragment
+import com.ssgsag.base.BaseRecyclerViewAdapter
+import com.ssgsag.data.model.subscribe.Subscribe
 import com.ssgsag.databinding.FragmentSsgSagBinding
+import com.ssgsag.databinding.ItemSubscribeBinding
 import com.ssgsag.ui.main.MainActivity
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
@@ -33,7 +37,15 @@ class SsgSagFragment : BaseFragment<FragmentSsgSagBinding, SsgSagViewModel>() {
 
         //CardStackView
         viewDataBinding.fragSsgSagCv.apply {
-            adapter = SsgSagCardStackAdapter(activity!!, null)
+            adapter = SsgSagCardStackAdapter(activity!!)
+//                object : BaseRecyclerViewAdapter<Subscribe, ItemSubscribeBinding>() {
+//                    override val layoutResID: Int
+//                        get() = R.layout.item_ssgsag
+//                    override val bindingVariableId: Int
+//                        get() = BR.poster
+//                    override val listener: OnItemClickListener?
+//                        get() = null
+//                }
             layoutManager = CardStackLayoutManager(activity, cardStackListener).apply {
                 setVisibleCount(3)
                 setDirections(Direction.HORIZONTAL)
@@ -59,6 +71,7 @@ class SsgSagFragment : BaseFragment<FragmentSsgSagBinding, SsgSagViewModel>() {
             }
             position++
         }
+
         override fun onCardCanceled() {}
         override fun onCardAppeared(view: View?, position: Int) {}
         override fun onCardRewound() {}

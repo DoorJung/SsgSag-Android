@@ -30,7 +30,9 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
 
-        viewModel.getPosterDetail(857)
+        val idx = intent.getIntExtra("Idx", 0)
+
+        viewModel.getPosterDetail(idx)
 
         setRecyclerViewAdapter()
 

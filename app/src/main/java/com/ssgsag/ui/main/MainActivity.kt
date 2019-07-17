@@ -28,12 +28,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
         PreferenceManager(this).putPreference("TOKEN", getString(R.string.TOKEN))
 
-        startActivity<CalendarDetailActivity>()
+        //startActivity<CalendarDetailActivity>()
         //Toolbar
         setSupportActionBar(viewDataBinding.actMainTb)
         supportActionBar!!.title = ""
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.drawer)
+
         //ViewPager
         viewDataBinding.actMainVp.run {
             adapter = BasePagerAdapter(supportFragmentManager).apply {

@@ -146,7 +146,7 @@
                         <androidx.cardview.widget.CardView
                                 app:cardElevation="0dp"
                                 app:cardCornerRadius="6dp"
-                                app:cateBg="@{vm.posterDetail.categoryIdx}"
+                                app:cateCardBg="@{vm.posterDetail.categoryIdx}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
@@ -154,7 +154,6 @@
                                     tools:text="카테고리"
                                     app:textByCate="@{vm.posterDetail.categoryIdx}"
                                     app:textColorByCate="@{vm.posterDetail.categoryIdx}"
-                                    android:textColor="@color/contest"
                                     android:layout_margin="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
@@ -204,6 +203,7 @@
                         app:calendarDetailReplaceAll="@{vm.posterDetail}">
 
                 </androidx.recyclerview.widget.RecyclerView>
+
                 <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"

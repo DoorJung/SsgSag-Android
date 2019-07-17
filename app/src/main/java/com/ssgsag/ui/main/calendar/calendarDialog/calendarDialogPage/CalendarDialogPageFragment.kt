@@ -1,20 +1,20 @@
 package com.ssgsag.ui.main.calendar.calendarDialog.calendarDialogPage
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import androidx.lifecycle.Observer
 import com.ssgsag.BR
 import com.ssgsag.R
 import com.ssgsag.base.BaseFragment
 import com.ssgsag.base.BaseRecyclerViewAdapter
 import com.ssgsag.databinding.FragmentCalendarDialogPageBinding
 import com.ssgsag.databinding.ItemCalendarScheduleBinding
-import com.ssgsag.ui.main.calendar.calendarDialog.CalendarDialogFragment
-import com.ssgsag.ui.main.calendar.calendarPage.CalendarPageFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CalendarDialogPageFragment : BaseFragment<FragmentCalendarDialogPageBinding, CalendarDialogPageViewModel>() {
+class CalendarDialogPageFragment : BaseFragment<FragmentCalendarDialogPageBinding, CalendarDialogPageViewModel>(),
+    BaseRecyclerViewAdapter.OnItemClickListener {
 
     override val layoutResID: Int
         get() = R.layout.fragment_calendar_dialog_page
@@ -44,6 +44,14 @@ class CalendarDialogPageFragment : BaseFragment<FragmentCalendarDialogPageBindin
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewDataBinding.vm = viewModel
+
+        viewModel.activityToStart.observe(this, Observer { value ->
+            val intent = Intent(activity, value.first.java)
+            value.second?.let {
+                intent.putExtras(it)
+            }
+            startActivity(intent)
+        })
 
         calendar.timeInMillis = timeByMillis
 
@@ -78,13 +86,17 @@ class CalendarDialogPageFragment : BaseFragment<FragmentCalendarDialogPageBindin
                 override val bindingVariableId: Int
                     get() = BR.calendar
                 override val listener: OnItemClickListener?
-                    get() = null
+                    get() = this@CalendarDialogPageFragment
             }
         isInit = true
     }
 
     fun setTimeByMillis(timeByMillis: Long) {
         this.timeByMillis = timeByMillis
+    }
+
+    override fun onItemClicked(item: Any?) {
+        
     }
 
     companion object {

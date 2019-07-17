@@ -1,4 +1,4 @@
-package com.ssgsag.util.extensionFun
+package com.ssgsag.util.extensionFunction
 
 import com.ssgsag.SsgSagApplication.Companion.ActTitle
 import com.ssgsag.SsgSagApplication.Companion.ClubTitle
@@ -23,9 +23,9 @@ fun getItemBase(poster: PosterDetail?): ArrayList<ItemBase> {
 
 fun dataInject(titleContents: ArrayList<ItemBase>, titleByCate: ArrayList<String>?, poster: PosterDetail) {
     titleByCate?.let {
-        titleContents.add(ItemBase(it[0], poster.outline))
-        titleContents.add(ItemBase(it[1], poster.target))
-        titleContents.add(ItemBase(it[2], poster.benefit))
+        titleContents.add(ItemBase(it[0], poster.outline, "1"))
+        titleContents.add(ItemBase(it[1], poster.target, "2"))
+        titleContents.add(ItemBase(it[2], poster.benefit, "3"))
     } ?: run {
         val ja = JSONArray(poster.outline)
         for (i in 0 until ja.length()) {
@@ -33,7 +33,8 @@ fun dataInject(titleContents: ArrayList<ItemBase>, titleByCate: ArrayList<String
             titleContents.add(
                 ItemBase(
                     order.getString("columnName"),
-                    order.getString("columnContent")
+                    order.getString("columnContent"),
+                    "${i + 1}"
                 )
             )
         }

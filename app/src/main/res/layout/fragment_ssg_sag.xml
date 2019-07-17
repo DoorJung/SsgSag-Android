@@ -17,8 +17,8 @@
 
         <com.yuyakaido.android.cardstackview.CardStackView
                 android:id="@+id/frag_ssg_sag_cv"
-                android:paddingTop="31dp"
-                android:paddingBottom="24dp"
+                android:paddingTop="26dp"
+                android:paddingBottom="20dp"
                 android:paddingHorizontal="12dp"
                 android:clipToPadding="false"
                 android:layout_width="match_parent"

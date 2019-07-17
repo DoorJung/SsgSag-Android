@@ -75,7 +75,7 @@ interface NetworkService {
 
     //region 포스터
     //포스터 조회
-    @GET("/poster/show")
+    @GET("/poster")
     fun posterResponse(
         @Header("Authorization") token: String
     ): Single<PosterResponse>

@@ -4,7 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ssgsag.base.BaseRecyclerViewAdapter
 import com.ssgsag.data.model.poster.posterDetail.PosterDetail
-import com.ssgsag.util.extensionFun.getItemBase
+import com.ssgsag.util.extensionFunction.getItemBase
 
 //View BindingAdapter
 @Suppress("UNCHECKED_CAST")
