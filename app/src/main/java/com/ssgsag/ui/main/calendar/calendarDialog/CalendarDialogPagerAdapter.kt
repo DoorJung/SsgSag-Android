@@ -81,7 +81,7 @@ class CalendarDialogPagerAdapter(fm : FragmentManager) : FragmentStatePagerAdapt
         this.numOfDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
 
         calendar.timeInMillis = lastDayMillis
-        //calendar.set(Calendar.DATE, 1)
+        //schedule.set(Schedule.DATE, 1)
         for (i in numOfDay downTo 1) {
             calendar.add(Calendar.DATE, -1)
             listDayByMillis.add(0, calendar.timeInMillis)

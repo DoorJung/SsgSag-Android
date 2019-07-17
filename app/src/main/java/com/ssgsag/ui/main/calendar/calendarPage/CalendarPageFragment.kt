@@ -14,6 +14,9 @@ import com.ssgsag.data.model.date.Date
 import com.ssgsag.databinding.ItemCalendarDateBinding
 import com.ssgsag.ui.main.calendar.CalendarFragment
 import com.ssgsag.ui.main.calendar.calendarDialog.CalendarDialogFragment
+import com.ssgsag.util.DateUtil.dateFormat
+import com.ssgsag.util.DateUtil.monthFormat
+import com.ssgsag.util.DateUtil.yearFormat
 import com.ssgsag.util.view.NonScrollGridLayoutManager
 
 class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarPageViewModel>(),
@@ -63,11 +66,11 @@ class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarP
         //현재 캘린더의 년, 월, 일
         val year = yearFormat.format(date)
         val month = monthFormat.format(date)
-        val day = dayFormat.format(date)
+        val day = dateFormat.format(date)
         //오늘의 년, 월, 일
         val toMonth = monthFormat.format(System.currentTimeMillis())
         val toYear = yearFormat.format(System.currentTimeMillis())
-        val toDay = dayFormat.format(System.currentTimeMillis())
+        val toDay = dateFormat.format(System.currentTimeMillis())
         //캘린터 설정
         mCalendar.set(year.toInt(), month.toInt() - 1, 1)
         if (month.toInt() - 1 == 1) {
@@ -100,7 +103,7 @@ class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarP
         } else
             lines = 5
 
-        viewModel.calendar.observe(this, androidx.lifecycle.Observer { value ->
+        viewModel.schedule.observe(this, androidx.lifecycle.Observer { value ->
             if (dataList.size == 0) {
                 dataList.clear()
                 val dayNum = mCalendar.get(Calendar.DAY_OF_WEEK)
@@ -130,7 +133,7 @@ class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarP
                     mInstanceCal.set(year.toInt(), month.toInt() - 1, i + 1)
                     instanceDayNum = mInstanceCal.get(Calendar.DAY_OF_WEEK)
 
-                    val scheduleList = ArrayList<com.ssgsag.data.model.calendar.Calendar>()
+                    val scheduleList = ArrayList<com.ssgsag.data.model.schedule.Schedule>()
                     val instanceScheduleList = viewModel.getCalendar(year, month)
 
                     for (j in instanceScheduleList.indices) {
@@ -221,9 +224,6 @@ class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarP
     }
 
     companion object {
-        val yearFormat = SimpleDateFormat("yyyy", Locale.KOREA)
-        val monthFormat = SimpleDateFormat("MM", Locale.KOREA)
-        val dayFormat = SimpleDateFormat("dd", Locale.KOREA)
 
         private val TAG = "CalendarPageFragment"
 

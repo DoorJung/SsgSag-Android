@@ -1,8 +1,8 @@
 package com.ssgsag.di
 
 import com.ssgsag.data.local.pref.PreferenceManager
-import com.ssgsag.data.model.calendar.CalendarRepository
-import com.ssgsag.data.model.calendar.CalendarRepositoryImpl
+import com.ssgsag.data.model.schedule.ScheduleRepository
+import com.ssgsag.data.model.schedule.ScheduleRepositoryImpl
 import com.ssgsag.data.model.poster.PosterRepository
 import com.ssgsag.data.model.poster.PosterRepositoryImpl
 import com.ssgsag.data.model.subscribe.SubscribeRepository
@@ -55,8 +55,8 @@ val factoryModule = module {
             get(), get()
         )
     }
-    factory<CalendarRepository> {
-        CalendarRepositoryImpl(
+    factory<ScheduleRepository> {
+        ScheduleRepositoryImpl(
             get(), get()
         )
     }
@@ -71,7 +71,7 @@ val viewModule = module {
     viewModel { SubscribeViewModel(get(), get()) }
     //SsgSag
     viewModel { SsgSagViewModel(get(), get()) }
-    //Calendar
+    //Schedule
     viewModel { CalendarViewModel() }
     viewModel { CalendarPageViewModel(get(), get()) }
     viewModel { CalendarDialogViewModel() }

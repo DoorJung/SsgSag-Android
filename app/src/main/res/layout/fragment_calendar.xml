@@ -13,7 +13,7 @@
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.main.calendar.CalendarFragment">
+            tools:context=".ui.main.schedule.CalendarFragment">
 
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/frag_calendar_tl_tag"

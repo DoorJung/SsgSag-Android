@@ -22,20 +22,22 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
         viewDataBinding.vm = viewModel
         viewDataBinding.actCalDetailRv.layoutManager = NonScrollLinearLayoutManager(this)
 
-        //Toolbar
+        //ui
+        setToolbar()
+        setRecyclerViewAdapter()
+
+        //getIdx
+        val idx = intent.getIntExtra("Idx", 0)
+        viewModel.getPosterDetail(idx)
+    }
+
+    private fun setToolbar() {
         setSupportActionBar(viewDataBinding.actCalDetailTb)
         supportActionBar!!.run {
             title = ""
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
-
-        val idx = intent.getIntExtra("Idx", 0)
-
-        viewModel.getPosterDetail(idx)
-
-        setRecyclerViewAdapter()
-
     }
 
     private fun setRecyclerViewAdapter() {
@@ -62,5 +64,4 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
 }

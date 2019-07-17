@@ -34,7 +34,7 @@
 
     <!--SsgSag color-->
 
-    <!--Calendar color-->
+    <!--Schedule color-->
     <color name="today">#1eca49</color>
     <color name="click">#ababab</color>
     <color name="dayOfWeek">#777777</color>

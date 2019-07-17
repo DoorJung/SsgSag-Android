@@ -4,7 +4,7 @@ import com.ssgsag.SsgSagApplication.Companion.globalApplication
 import com.ssgsag.R
 import com.ssgsag.data.model.base.IntResponse
 import com.ssgsag.data.model.base.NullResponse
-import com.ssgsag.data.model.calendar.CalendarResponse
+import com.ssgsag.data.model.schedule.ScheduleResponse
 import com.ssgsag.data.model.poster.PosterResponse
 import com.ssgsag.data.model.poster.posterDetail.PosterDetailResponse
 import com.ssgsag.data.model.subscribe.SubscribeResponse
@@ -102,7 +102,7 @@ interface NetworkService {
         @Query("year") year: String,
         @Query("month") month: String,
         @Query("day") day: String
-    ): Single<CalendarResponse>
+    ): Single<ScheduleResponse>
     //일정 지원 완료
     //일정 삭제
     //일정 지원 완료 조회

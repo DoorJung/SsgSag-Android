@@ -1,6 +1,6 @@
 package com.ssgsag.data.model.date
 
-import com.ssgsag.data.model.calendar.Calendar
+import com.ssgsag.data.model.schedule.Schedule
 
 data class Date(
     var year : String,
@@ -10,6 +10,6 @@ data class Date(
     var isToDay: Boolean,
     var isCurrentMonth: Boolean,
     var isClickDay: Boolean,
-    var schedule : ArrayList<Calendar> ? = null,
+    var schedule : ArrayList<Schedule> ? = null,
     var lines: Int
 )

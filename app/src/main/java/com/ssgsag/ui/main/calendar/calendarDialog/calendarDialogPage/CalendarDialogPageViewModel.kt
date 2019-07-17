@@ -5,25 +5,25 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ssgsag.base.BaseViewModel
-import com.ssgsag.data.model.calendar.Calendar
-import com.ssgsag.data.model.calendar.CalendarRepository
+import com.ssgsag.data.model.schedule.Schedule
+import com.ssgsag.data.model.schedule.ScheduleRepository
 import com.ssgsag.ui.main.calendar.calendarDetail.CalendarDetailActivity
 import com.ssgsag.util.scheduler.SchedulerProvider
 import kotlin.reflect.KClass
 
 class CalendarDialogPageViewModel(
-    private val repository: CalendarRepository
+    private val repository: ScheduleRepository
     , private val schedulerProvider: SchedulerProvider
 ) : BaseViewModel() {
 
     private val _isProgress = MutableLiveData<Int>()
     val isProgress: LiveData<Int> get() = _isProgress
-    private val _calendar = MutableLiveData<ArrayList<Calendar>>()
-    val calendar: LiveData<ArrayList<Calendar>> get() = _calendar
+    private val _schedule = MutableLiveData<ArrayList<Schedule>>()
+    val schedule: LiveData<ArrayList<Schedule>> get() = _schedule
     private val _activityToStart = MutableLiveData<Pair<KClass<*>, Bundle?>>()
     val activityToStart: LiveData<Pair<KClass<*>, Bundle?>> get() = _activityToStart
 
-    fun getCalendar(year: String, month: String, date: String) {
+    fun getSchedule(year: String, month: String, date: String) {
         addDisposable(repository.getCalendar(year, month, date)
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.mainThread())
@@ -31,7 +31,7 @@ class CalendarDialogPageViewModel(
             .doOnTerminate { hideProgress() }
             .subscribe({
                 it.run {
-                    _calendar.postValue(this)
+                    _schedule.postValue(this)
                 }
             }, {
 
@@ -39,12 +39,10 @@ class CalendarDialogPageViewModel(
         )
     }
 
-
     fun navigate(idx: Int) {
-        val bundle = Bundle().apply { putInt("idx", idx) }
+        val bundle = Bundle().apply { putInt("Idx", idx) }
         _activityToStart.postValue(Pair(CalendarDetailActivity::class, bundle))
     }
-
 
     private fun showProgress() {
         _isProgress.value = View.VISIBLE

@@ -21,10 +21,6 @@ class CalendarDialogFragment : BaseDialogFragment<DialogFragmentCalendarBinding,
     var month = 0
     var date = 0
 
-    var testYear = 0
-    var testMonth = 0
-    var testDate = 0
-
     lateinit var calendarDialogPagerAdapter: CalendarDialogPagerAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -35,15 +31,11 @@ class CalendarDialogFragment : BaseDialogFragment<DialogFragmentCalendarBinding,
         val mArgs = arguments
         val mValue = mArgs!!.getStringArrayList("Date")
 
-        testYear = mValue!![0].toInt()
-        testMonth = mValue[1].toInt() - 1
-        testDate = mValue[2].toInt()
-
         year = mValue!![0].toInt()
         month = mValue[1].toInt() - 1
         date = mValue[2].toInt()
 
-        //Calendar 설정
+        //Schedule 설정
         val cal = Calendar.getInstance()
         val instanceCal = Calendar.getInstance()
         cal.set(year, month, date)

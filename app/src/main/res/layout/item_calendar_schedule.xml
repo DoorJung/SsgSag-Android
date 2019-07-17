@@ -3,8 +3,8 @@
 
     <data>
         <variable
-                name="calendar"
-                type="com.ssgsag.data.model.calendar.Calendar"/>
+                name="schedule"
+                type="com.ssgsag.data.model.schedule.Schedule"/>
     </data>
 
     <androidx.cardview.widget.CardView
@@ -29,7 +29,7 @@
                     android:layout_height="61dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginVertical="7dp"
-                    app:glideImg="@{calendar.photoUrl}"/>
+                    app:glideImg="@{schedule.photoUrl}"/>
 
             <LinearLayout
                     android:layout_gravity="center_vertical"
@@ -48,8 +48,8 @@
                         android:textColor="#346df3"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/noto_sans_kr_regular"
-                        app:textByCate="@{calendar.categoryIdx}"
-                        app:textColorByCate="@{calendar.categoryIdx}"/>
+                        app:textByCate="@{schedule.categoryIdx}"
+                        app:textColorByCate="@{schedule.categoryIdx}"/>
 
                 <TextView
                         tools:text="포스터 이름"
@@ -60,7 +60,7 @@
                         android:textColor="#3d3d3d"
                         android:layout_marginStart="16dp"
                         android:maxLines="1"
-                        android:text="@{calendar.posterName}"
+                        android:text="@{schedule.posterName}"
                         android:fontFamily="@font/noto_sans_kr_medium"/>
 
                 <TextView
@@ -74,8 +74,8 @@
                         android:layout_marginTop="2dp"
                         android:maxLines="1"
                         android:fontFamily="@font/noto_sans_kr_regular"
-                        app:startDateFormat2="@{calendar.posterStartDate}"
-                        app:endDateFormat2="@{calendar.posterEndDate}"/>
+                        app:startDateFormat2="@{schedule.posterStartDate}"
+                        app:endDateFormat2="@{schedule.posterEndDate}"/>
 
             </LinearLayout>
 

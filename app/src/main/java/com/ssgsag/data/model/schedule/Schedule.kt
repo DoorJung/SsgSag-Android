@@ -1,7 +1,7 @@
-package com.ssgsag.data.model.calendar
+package com.ssgsag.data.model.schedule
 
 
-data class Calendar(
+data class Schedule(
     val posterIdx : Int,
     val categoryIdx : Int,
     val isCompleted : Int,
