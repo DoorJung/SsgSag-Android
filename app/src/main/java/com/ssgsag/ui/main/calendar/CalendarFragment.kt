@@ -4,16 +4,22 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import com.ssgsag.BR
 import com.ssgsag.R
 import com.ssgsag.base.BaseFragment
+import com.ssgsag.base.BaseRecyclerViewAdapter
+import com.ssgsag.data.model.category.Category
 import com.ssgsag.databinding.FragmentCalendarBinding
+import com.ssgsag.databinding.ItemCalSortBinding
 import com.ssgsag.ui.main.MainActivity
 import com.ssgsag.ui.main.calendar.calendarPage.CalendarPageFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel>() {
+class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel>(),
+    BaseRecyclerViewAdapter.OnItemClickListener {
 
     override val layoutResID: Int
         get() = R.layout.fragment_calendar
@@ -61,46 +67,25 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
                 }
             })
         }
-        viewDataBinding.fragCalendarTlTag.run {
-            addTab(this.newTab().setText("전체"))
-            addTab(this.newTab().setText("즐겨찾기"))
-            addTab(this.newTab().setText("공모전"))
-            addTab(this.newTab().setText("대외활동"))
-            addTab(this.newTab().setText("동아리"))
-            addTab(this.newTab().setText("인턴"))
 
-            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab) {
-                    val position = tab.position
-                    when (position) {
-                        0 -> {
-
-                        }
-                        1 -> {
-
-                        }
-                        2 -> {
-
-                        }
-                        3 -> {
-
-                        }
-                        4 -> {
-
-                        }
-                        5 -> {
-
-                        }
-                    }
+        viewDataBinding.fragCalendarRvSort.apply {
+            adapter =
+                object : BaseRecyclerViewAdapter<Category, ItemCalSortBinding>() {
+                    override val layoutResID: Int
+                        get() = R.layout.item_cal_sort
+                    override val bindingVariableId: Int
+                        get() = BR.category
+                    override val listener: OnItemClickListener?
+                        get() = this@CalendarFragment
                 }
-
-                override fun onTabUnselected(tab: TabLayout.Tab) {}
-                override fun onTabReselected(tab: TabLayout.Tab) {}
-            })
         }
 
         isInited = true
     }
+
+    override fun onItemClicked(item: Any?) =
+        viewModel.checkCate((item as Category).categoryIdx)
+
 
     companion object {
         private val TAG = "CalendarFragment"

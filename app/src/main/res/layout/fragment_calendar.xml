@@ -15,15 +15,16 @@
             android:layout_height="match_parent"
             tools:context=".ui.main.schedule.CalendarFragment">
 
-        <com.google.android.material.tabs.TabLayout
-                android:id="@+id/frag_calendar_tl_tag"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginHorizontal="24dp"
+                android:id="@+id/frag_calendar_rv_sort"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tabTextColor="@color/unselectedTabColor"
-                app:tabSelectedTextColor="@color/selectedTabColor"
-                app:tabMode="scrollable"
-                app:tabIndicatorFullWidth="false"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp"
+                app:replaceAll="@{vm.categorySort}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         <LinearLayout
                 android:id="@+id/frag_calendar_ll_day_of_week"
@@ -31,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/frag_calendar_tl_tag">
+                app:layout_constraintTop_toBottomOf="@+id/frag_calendar_rv_sort">
 
             <TextView
                     android:gravity="center"

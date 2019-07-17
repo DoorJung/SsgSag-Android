@@ -11,6 +11,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
 import com.ssgsag.data.model.date.Date
+import com.ssgsag.data.model.schedule.Schedule
 import com.ssgsag.databinding.ItemCalendarDateBinding
 import com.ssgsag.ui.main.calendar.CalendarFragment
 import com.ssgsag.ui.main.calendar.calendarDialog.CalendarDialogFragment
@@ -133,7 +134,7 @@ class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarP
                     mInstanceCal.set(year.toInt(), month.toInt() - 1, i + 1)
                     instanceDayNum = mInstanceCal.get(Calendar.DAY_OF_WEEK)
 
-                    val scheduleList = ArrayList<com.ssgsag.data.model.schedule.Schedule>()
+                    val scheduleList = ArrayList<Schedule>()
                     val instanceScheduleList = viewModel.getCalendar(year, month)
 
                     for (j in instanceScheduleList.indices) {
@@ -217,10 +218,6 @@ class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarP
 
     fun setTimeByMillis(timeByMillis: Long) {
         this.timeByMillis = timeByMillis
-    }
-
-    interface OnFragmentListener {
-        fun onFragmentListener(view: View?)
     }
 
     companion object {
