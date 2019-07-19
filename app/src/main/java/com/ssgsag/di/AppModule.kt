@@ -15,7 +15,6 @@ import com.ssgsag.ui.main.calendar.CalendarViewModel
 import com.ssgsag.ui.main.calendar.calendarDetail.CalendarDetailViewModel
 import com.ssgsag.ui.main.calendar.calendarDialog.CalendarDialogViewModel
 import com.ssgsag.ui.main.calendar.calendarDialog.calendarDialogPage.CalendarDialogPageViewModel
-import com.ssgsag.ui.main.calendar.calendarPage.CalendarPageViewModel
 import com.ssgsag.ui.main.myPage.MyPageViewModel
 import com.ssgsag.ui.main.myPage.subscribe.SubscribeViewModel
 import com.ssgsag.ui.main.ssgSag.SsgSagViewModel
@@ -60,7 +59,6 @@ val factoryModule = module {
             get(), get()
         )
     }
-
 }
 
 val viewModule = module {
@@ -72,8 +70,7 @@ val viewModule = module {
     //SsgSag
     viewModel { SsgSagViewModel(get(), get()) }
     //Schedule
-    viewModel { CalendarViewModel() }
-    viewModel { CalendarPageViewModel(get(), get()) }
+    viewModel { CalendarViewModel(get(), get()) }
     viewModel { CalendarDialogViewModel() }
     viewModel { CalendarDialogPageViewModel(get(), get()) }
     viewModel { CalendarDetailViewModel(get(), get()) }

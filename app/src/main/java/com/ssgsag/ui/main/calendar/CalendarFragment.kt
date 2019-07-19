@@ -1,12 +1,7 @@
 package com.ssgsag.ui.main.calendar
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
 import com.ssgsag.BR
 import com.ssgsag.R
 import com.ssgsag.base.BaseFragment
@@ -15,7 +10,6 @@ import com.ssgsag.data.model.category.Category
 import com.ssgsag.databinding.FragmentCalendarBinding
 import com.ssgsag.databinding.ItemCalSortBinding
 import com.ssgsag.ui.main.MainActivity
-import com.ssgsag.ui.main.calendar.calendarPage.CalendarPageFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel>(),

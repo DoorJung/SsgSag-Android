@@ -4,7 +4,7 @@
     <data>
         <variable
                 name="vm"
-                type="com.ssgsag.ui.main.calendar.calendarPage.CalendarPageViewModel"/>
+                type="com.ssgsag.ui.main.calendar.CalendarViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

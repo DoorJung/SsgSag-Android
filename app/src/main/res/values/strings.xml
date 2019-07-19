@@ -3,6 +3,10 @@
     <!--app info-->
     <string name="app_name">슥삭</string>
 
+    <!-- main text-->
+    <string name="menu_cal_share">캘린더공유</string>
+
+
     <!--coach text-->
     <string name="coach_my_page_board">게시판 설정을 눌러\n관심있는 게시판을 팔로우해보세요.</string>
     <string name="coach_my_page_job">관심직무를 선택하여\n스펙, 채용정보를 받아보세요.</string>

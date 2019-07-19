@@ -1,31 +1,30 @@
 package com.ssgsag.ui.main.calendar.calendarPage
 
 import android.os.Bundle
-import android.view.View
 import com.ssgsag.BR
 import com.ssgsag.R
 import com.ssgsag.base.BaseFragment
 import com.ssgsag.base.BaseRecyclerViewAdapter
 import com.ssgsag.databinding.FragmentCalendarPageBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.SimpleDateFormat
 import java.util.*
 import com.ssgsag.data.model.date.Date
 import com.ssgsag.data.model.schedule.Schedule
 import com.ssgsag.databinding.ItemCalendarDateBinding
 import com.ssgsag.ui.main.calendar.CalendarFragment
+import com.ssgsag.ui.main.calendar.CalendarViewModel
 import com.ssgsag.ui.main.calendar.calendarDialog.CalendarDialogFragment
 import com.ssgsag.util.DateUtil.dateFormat
 import com.ssgsag.util.DateUtil.monthFormat
 import com.ssgsag.util.DateUtil.yearFormat
 import com.ssgsag.util.view.NonScrollGridLayoutManager
 
-class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarPageViewModel>(),
+class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarViewModel>(),
     BaseRecyclerViewAdapter.OnItemClickListener {
 
     override val layoutResID: Int
         get() = R.layout.fragment_calendar_page
-    override val viewModel: CalendarPageViewModel by viewModel()
+    override val viewModel: CalendarViewModel by viewModel()
 
     private var timeByMillis: Long = 0
     private val dataList: ArrayList<Date> by lazy { ArrayList<Date>() }

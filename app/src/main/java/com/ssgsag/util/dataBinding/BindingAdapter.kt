@@ -1,4 +1,4 @@
-package com.ssgsag.util.dataBinging
+package com.ssgsag.util.dataBinding
 
 import android.view.View
 import android.widget.ImageView

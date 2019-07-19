@@ -22,14 +22,7 @@ class SsgSagFragment : BaseFragment<FragmentSsgSagBinding, SsgSagViewModel>() {
         get() = R.layout.fragment_ssg_sag
     override val viewModel: SsgSagViewModel by viewModel()
 
-    private var isInit = false
     var position = 0
-
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        if (isVisibleToUser && isInit) {
-            (activity as MainActivity).viewDataBinding.actMainTvTitle.text = ""
-        }
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -38,26 +31,16 @@ class SsgSagFragment : BaseFragment<FragmentSsgSagBinding, SsgSagViewModel>() {
         //CardStackView
         viewDataBinding.fragSsgSagCv.apply {
             adapter = SsgSagCardStackAdapter(activity!!)
-//                object : BaseRecyclerViewAdapter<Subscribe, ItemSubscribeBinding>() {
-//                    override val layoutResID: Int
-//                        get() = R.layout.item_ssgsag
-//                    override val bindingVariableId: Int
-//                        get() = BR.poster
-//                    override val listener: OnItemClickListener?
-//                        get() = null
-//                }
             layoutManager = CardStackLayoutManager(activity, cardStackListener).apply {
                 setVisibleCount(3)
                 setDirections(Direction.HORIZONTAL)
                 setCanScrollHorizontal(true)
                 setCanScrollVertical(false)
             }
-            viewModel.allPosters.observe(this@SsgSagFragment, Observer { value ->
-                (viewDataBinding.fragSsgSagCv.adapter as SsgSagCardStackAdapter).replaceAll(value)
-            })
         }
-        isInit = true
-
+        viewModel.allPosters.observe(this@SsgSagFragment, Observer { value ->
+            (viewDataBinding.fragSsgSagCv.adapter as SsgSagCardStackAdapter).replaceAll(value)
+        })
     }
 
     private val cardStackListener = object : CardStackListener {
