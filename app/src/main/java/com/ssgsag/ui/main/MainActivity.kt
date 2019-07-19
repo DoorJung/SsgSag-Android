@@ -35,19 +35,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         PreferenceManager(this).putPreference("TOKEN", getString(R.string.TOKEN))
 
         //ui
-        setToolbar()
         setViewPager()
         setTabLayout()
-    }
-
-    private fun setToolbar() {
-        //Toolbar
-        setSupportActionBar(viewDataBinding.actMainTb)
-        supportActionBar!!.run {
-            title = ""
-            setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.drawer)
-        }
     }
 
     private fun setViewPager() {
@@ -58,15 +47,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 addFragment(SsgSagFragment())
                 addFragment(CalendarFragment())
             }
-            //Refresh menu
-            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-                override fun onPageSelected(position: Int) {
-                    invalidateOptionsMenu()
-                }
-
-                override fun onPageScrollStateChanged(state: Int) {}
-            })
             currentItem = 1
             offscreenPageLimit = 2
         }
@@ -85,60 +65,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 bottomNavigationLayout.findViewById(R.id.top_navigation_rl_ssg_sag) as RelativeLayout
             getTabAt(2)!!.customView =
                 bottomNavigationLayout.findViewById(R.id.top_navigation_rl_calendar) as RelativeLayout
-
-            //TabSelectedListener
-            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab) {
-                    when (tab.position) {
-                        0 -> {
-                            viewDataBinding.actMainTvTitle.text = ""
-                            viewDataBinding.actMainVSsgSagLine.visibility = View.GONE
-                        }
-                        1 -> {
-                            viewDataBinding.actMainTvTitle.text = ""
-                            viewDataBinding.actMainVSsgSagLine.visibility = View.VISIBLE
-                        }
-                        2 -> {
-                            viewDataBinding.actMainVSsgSagLine.visibility = View.GONE
-                        }
-                    }
-                }
-
-                override fun onTabUnselected(tab: TabLayout.Tab) {}
-                override fun onTabReselected(tab: TabLayout.Tab) {}
-            })
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        when (viewDataBinding.actMainVp.currentItem) {
-            0 -> {
-                menu.findItem(R.id.menu_main_notice).setVisible(false)
-                menu.findItem(R.id.menu_main_cal_share).setVisible(false)
-            }
-            1 -> {
-                menu.findItem(R.id.menu_main_notice).setVisible(true)
-                menu.findItem(R.id.menu_main_cal_share).setVisible(false)
-            }
-            2 -> {
-                menu.findItem(R.id.menu_main_notice).setVisible(false)
-                menu.findItem(R.id.menu_main_cal_share).setVisible(true)
-            }
-        }
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_main_notice -> {
-                Log.d(TAG, "알림")
-            }
-            R.id.menu_main_cal_share -> {
-                Log.d(TAG, "캘린더 공유")
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     companion object {

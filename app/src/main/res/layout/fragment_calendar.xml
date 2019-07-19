@@ -15,13 +15,57 @@
             android:layout_height="match_parent"
             tools:context=".ui.main.schedule.CalendarFragment">
 
+        <RelativeLayout
+                android:id="@+id/frag_cal_rl_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="1dp">
+
+            <ImageView
+                    android:id="@+id/frag_cal_iv_drawer"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/drawer"/>
+
+            <TextView
+                    tools:text="Day"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/frag_cal_tv_day"
+                    android:layout_toRightOf="@+id/frag_cal_iv_drawer"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="#4f4f4f"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="8sp"/>
+
+            <TextView
+                    android:text="캘린더공유"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#626aff"
+                    android:letterSpacing="-0.03"
+                    android:lineSpacingExtra="1sp"
+                    android:fontFamily="@font/noto_sans_kr_regular"/>
+
+        </RelativeLayout>
+
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginHorizontal="24dp"
                 android:id="@+id/frag_calendar_rv_sort"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_cal_rl_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="8dp"
                 app:replaceAll="@{vm.categorySort}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>

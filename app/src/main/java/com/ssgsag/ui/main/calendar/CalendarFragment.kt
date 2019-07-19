@@ -19,18 +19,9 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
         get() = R.layout.fragment_calendar
     override val viewModel: CalendarViewModel by viewModel()
 
-    var isInited = false
     var position = COUNT_PAGE
 
     lateinit var calendarPagerAdapter: CalendarPagerAdapter
-
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser && isInited) {
-            (activity as MainActivity).viewDataBinding.actMainTvTitle.text =
-                calendarPagerAdapter.getMonthDisplayed(position)
-        }
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -39,6 +30,9 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
         calendarPagerAdapter = CalendarPagerAdapter(childFragmentManager).apply {
             setNumOfMonth(COUNT_PAGE)
         }
+
+        viewDataBinding.fragCalTvDay.text =
+            calendarPagerAdapter.getMonthDisplayed(position)
 
         viewDataBinding.fragCalendarVpPage.run {
             adapter = calendarPagerAdapter
@@ -50,7 +44,7 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
                 }
 
                 override fun onPageSelected(position: Int) {
-                    (activity as MainActivity).viewDataBinding.actMainTvTitle.text =
+                    viewDataBinding.fragCalTvDay.text =
                         calendarPagerAdapter.getMonthDisplayed(position)
 
                     this@CalendarFragment.position = position
@@ -73,8 +67,6 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
                         get() = this@CalendarFragment
                 }
         }
-
-        isInited = true
     }
 
     override fun onItemClicked(item: Any?) =
