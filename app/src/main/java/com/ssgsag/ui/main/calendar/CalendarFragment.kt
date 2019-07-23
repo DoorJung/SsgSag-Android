@@ -26,13 +26,29 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewDataBinding.vm = viewModel
+        //ui
+        setCalendarViewPager()
+        setSortTab()
+    }
 
-        calendarPagerAdapter = CalendarPagerAdapter(childFragmentManager).apply {
-            setNumOfMonth(COUNT_PAGE)
+    private fun setSortTab() {
+        viewDataBinding.fragCalendarRvSort.apply {
+            adapter =
+                object : BaseRecyclerViewAdapter<Category, ItemCalSortBinding>() {
+                    override val layoutResID: Int
+                        get() = R.layout.item_cal_sort
+                    override val bindingVariableId: Int
+                        get() = BR.category
+                    override val listener: OnItemClickListener?
+                        get() = this@CalendarFragment
+                }
         }
+    }
 
-        viewDataBinding.fragCalTvDay.text =
-            calendarPagerAdapter.getMonthDisplayed(position)
+    private fun setCalendarViewPager() {
+        calendarPagerAdapter = CalendarPagerAdapter(childFragmentManager).apply { setNumOfMonth(COUNT_PAGE) }
+
+        viewDataBinding.fragCalTvDay.text = calendarPagerAdapter.getMonthDisplayed(position)
 
         viewDataBinding.fragCalendarVpPage.run {
             adapter = calendarPagerAdapter
@@ -47,6 +63,13 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
                     viewDataBinding.fragCalTvDay.text =
                         calendarPagerAdapter.getMonthDisplayed(position)
 
+                    if (position == 0) {
+                        calendarPagerAdapter.addPrev()
+                        setCurrentItem(COUNT_PAGE, false)
+                    } else if (position == calendarPagerAdapter.count - 1) {
+                        calendarPagerAdapter.addNext()
+                        setCurrentItem(calendarPagerAdapter.count - (COUNT_PAGE + 1), false)
+                    }
                     this@CalendarFragment.position = position
                 }
 
@@ -55,28 +78,14 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
                 }
             })
         }
-
-        viewDataBinding.fragCalendarRvSort.apply {
-            adapter =
-                object : BaseRecyclerViewAdapter<Category, ItemCalSortBinding>() {
-                    override val layoutResID: Int
-                        get() = R.layout.item_cal_sort
-                    override val bindingVariableId: Int
-                        get() = BR.category
-                    override val listener: OnItemClickListener?
-                        get() = this@CalendarFragment
-                }
-        }
     }
 
     override fun onItemClicked(item: Any?) =
         viewModel.checkCate((item as Category).categoryIdx)
 
-
     companion object {
         private val TAG = "CalendarFragment"
         private val COUNT_PAGE = 60
     }
-
 }
 

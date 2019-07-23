@@ -1,6 +1,5 @@
 package com.ssgsag.data.model.subscribe
 
-import com.ssgsag.data.model.base.NullResponse
 import io.reactivex.Single
 
 interface SubscribeRepository {

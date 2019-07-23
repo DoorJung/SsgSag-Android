@@ -1,9 +1,10 @@
 package com.ssgsag.data.remote.api
 
+import com.google.gson.JsonObject
 import com.ssgsag.SsgSagApplication.Companion.globalApplication
 import com.ssgsag.R
 import com.ssgsag.data.model.base.IntResponse
-import com.ssgsag.data.model.base.NullResponse
+import com.ssgsag.data.model.base.NullDataResponse
 import com.ssgsag.data.model.schedule.ScheduleResponse
 import com.ssgsag.data.model.poster.PosterResponse
 import com.ssgsag.data.model.poster.posterDetail.PosterDetailResponse
@@ -30,7 +31,7 @@ interface NetworkService {
     @GET("/user")
     fun signUpResponse(
         @Header("Content-Type") content_type : String
-    ):  Single<NullResponse>
+    ):  Single<NullDataResponse>
     //회원 조회
     @GET("/user")
     fun userInfoResponse(
@@ -51,7 +52,7 @@ interface NetworkService {
         @Part("userGrade") userGrade: RequestBody,
         @Part("userProfileUrl") userProfileUrl: RequestBody,
         @Part profile: MultipartBody.Part?
-    ): Single<NullResponse>
+    ): Single<NullDataResponse>
     //회원 탈퇴
     //마이페이지 사진등록
     //구독 조회
@@ -64,13 +65,13 @@ interface NetworkService {
     fun subscribeResponse(
         @Header("Authorization") token : String,
         @Path("interestIdx") interestIdx : Int
-    ): Single<NullResponse>
+    ): Single<NullDataResponse>
     //구독 취소
     @DELETE("/user/subscribe/{interestIdx}")
     fun unsubscribeResponse(
         @Header("Authorization") token : String,
         @Path("interestIdx") interestIdx : Int
-    ): Single<NullResponse>
+    ): Single<NullDataResponse>
    //endregion
 
     //region 포스터
@@ -126,6 +127,36 @@ interface NetworkService {
 
     //region 업데이트
     //업데이트 확인
+    //endregion
+
+    //region 댓글
+    //댓글 추가
+    @POST("/comment")
+    fun writeComment(
+        @Header("Content-Type") content_type: String,
+        @Header("Authorization") token: String,
+        @Body() body: JsonObject
+    ): Single<NullDataResponse>
+    //댓글 수정
+    @PUT("/comment")
+    fun editComment(
+        @Header("Content-Type") content_type: String,
+        @Header("Authorization") token: String,
+        @Body() body: JsonObject
+    ): Single<NullDataResponse>
+    //댓글 삭제
+    @DELETE("/comment/{commentIdx}")
+    fun deleteComment(
+        @Header("Authorization") token: String,
+        @Path("commentIdx") commentIdx : Int
+    ): Single<NullDataResponse>
+    //댓글 좋아요 또는 좋아요 취소
+    @POST("/comment/like/{commentIdx}/{like}")
+    fun likeComment(
+        @Header("Authorization") token: String,
+        @Path("commentIdx") commentIdx : Int,
+        @Path("like") like : Int
+    ): Single<NullDataResponse>
     //endregion
 
     companion object {

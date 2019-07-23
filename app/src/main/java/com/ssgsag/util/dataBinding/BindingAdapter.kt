@@ -2,6 +2,7 @@ package com.ssgsag.util.dataBinding
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
@@ -21,6 +22,15 @@ fun RecyclerView.replaceAll(list: List<Any>?) {
     (this.adapter as? BaseRecyclerViewAdapter<Any, *>)?.run {
         replaceAll(list)
         notifyDataSetChanged()
+    }
+}
+
+@BindingAdapter("nullDataInvisible")
+fun setNullDataInvisible(view: LinearLayout, data: Any?) {
+    data?.run {
+        view.visibility = View.VISIBLE
+    } ?: run {
+        view.visibility = View.GONE
     }
 }
 
@@ -126,4 +136,11 @@ fun setDateTextFormat2(view: TextView, posterStartDate: String?, posterEndDate: 
         endDate = " ~ ${endDateArr[1]}.${endDateArr[2]}(${dayOfWeekExtension(endDateArr)})"
     }
     view.text = startDate + endDate
+}
+
+@BindingAdapter("singleDateFormat1")
+fun setSingleDateTextForm1(view: TextView, date: String?) {
+    date?.run {
+        view.text = substring(5, 16).replace(" ", "일 ").replace("-", "월 ")
+    }
 }

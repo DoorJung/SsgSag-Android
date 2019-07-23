@@ -39,6 +39,7 @@
         <androidx.core.widget.NestedScrollView
                 app:layout_constraintTop_toBottomOf="@+id/act_cal_detail_tb"
                 app:layout_constraintBottom_toTopOf="@+id/act_cal_detail_rl_comment_write"
+                android:id="@+id/act_cal_detail_nsv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp">
 
@@ -206,84 +207,158 @@
 
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
+                        android:layout_height="1dp"
                         android:layout_marginHorizontal="14dp"
                         android:background="#dcdcdb"/>
 
+                <LinearLayout
+                        android:id="@+id/act_cal_detail_ll_manager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:nullDataInvisible="@{vm.posterDetail.chargerName}">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginHorizontal="24dp"
+                            android:layout_marginBottom="32dp"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:text="담당자 연락처"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:textColor="#777777"
+                                android:fontFamily="@font/noto_sans_kr_medium"
+                                android:letterSpacing="-0.02"/>
+
+                        <LinearLayout
+                                android:layout_marginTop="2dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:text="전화번호: "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="#777777"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="3sp"
+                                    android:fontFamily="@font/noto_sans_kr_regular"/>
+
+                            <TextView
+                                    tools:text="010-0000-0000"
+                                    android:text="@{vm.posterDetail.partnerPhone}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="#777777"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="3sp"
+                                    android:fontFamily="@font/noto_sans_kr_regular"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:text="이메일: "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="#777777"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="3sp"
+                                    android:fontFamily="@font/noto_sans_kr_regular"/>
+
+                            <TextView
+                                    tools:text="ssgsag.univ@ssgsag.kr"
+                                    android:text="@{vm.posterDetail.partnerEmail}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="#777777"
+                                    android:letterSpacing="-0.03"
+                                    android:lineSpacingExtra="3sp"
+                                    android:fontFamily="@font/noto_sans_kr_regular"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginHorizontal="14dp"
+                            android:background="#dcdcdb"/>
+
+                </LinearLayout>
 
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginHorizontal="24dp"
-                        android:layout_marginBottom="32dp"
+                        android:layout_marginHorizontal="22dp"
                         android:orientation="vertical">
 
+                    <LinearLayout
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/analytics"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="13sp"
+                                android:textColor="#777fff"
+                                android:letterSpacing="-0.03"
+                                android:lineSpacingExtra="12sp"
+                                android:fontFamily="@font/noto_sans_kr_medium"
+                                android:text="슥삭 애널리틱스"/>
+
+                    </LinearLayout>
+
                     <TextView
-                            android:text="담당자 연락처"
+                            tools:text="어떤 전공 몇학년 남자또는여자가 관심이 많아요"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
-                            android:textColor="#777777"
-                            android:fontFamily="@font/noto_sans_kr_medium"
-                            android:letterSpacing="-0.02"/>
-
-                    <LinearLayout
-                            android:layout_marginTop="2dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                        <TextView
-                                android:text="전화번호: "
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:textColor="#777777"
-                                android:letterSpacing="-0.03"
-                                android:lineSpacingExtra="3sp"
-                                android:fontFamily="@font/noto_sans_kr_regular"/>
-
-                        <TextView
-                                tools:text="010-0000-0000"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:textColor="#777777"
-                                android:letterSpacing="-0.03"
-                                android:lineSpacingExtra="3sp"
-                                android:fontFamily="@font/noto_sans_kr_regular"/>
-
-                    </LinearLayout>
+                            android:textColor="#505050"
+                            android:lineSpacingExtra="13sp"
+                            android:gravity="end"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"/>
 
                     <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                        <TextView
-                                android:text="이메일: "
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:textColor="#777777"
-                                android:letterSpacing="-0.03"
-                                android:lineSpacingExtra="3sp"
-                                android:fontFamily="@font/noto_sans_kr_regular"/>
-
-                        <TextView
-                                tools:text="ssgsag.univ@ssgsag.kr"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:textColor="#777777"
-                                android:letterSpacing="-0.03"
-                                android:lineSpacingExtra="3sp"
-                                android:fontFamily="@font/noto_sans_kr_regular"/>
+                        <!--차트뷰-->
 
                     </LinearLayout>
+
 
                 </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dcdcdb"/>
 
                 <RelativeLayout
                         android:layout_width="match_parent"
@@ -306,15 +381,15 @@
 
                 <View
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
+                        android:layout_height="1dp"
                         android:background="#dcdcdb"/>
 
-                <RelativeLayout
+                <androidx.recyclerview.widget.RecyclerView
+                        android:layout_marginHorizontal="18dp"
+                        android:id="@+id/act_cal_detail_rv_comment"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp">
+                        android:layout_height="wrap_content"/>
 
-
-                </RelativeLayout>
 
             </LinearLayout>
 
@@ -329,7 +404,7 @@
             <View
                     android:layout_alignParentTop="true"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:background="#dcdcdb"/>
 
             <EditText

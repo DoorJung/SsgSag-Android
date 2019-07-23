@@ -40,11 +40,10 @@ class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarV
         val dialogFragment = CalendarDialogFragment()
         val args = Bundle()
         args.putStringArrayList("Date", arrayListOf((item as Date).year, item.month, item.date))
+
         dialogFragment.arguments = args
-
         dialogFragment.setTargetFragment(this, 0)
-
-        dialogFragment.show(fragmentManager!!, "fragment_dialog_test")
+        dialogFragment.show(fragmentManager!!, "frag_dialog_cal")
     }
 
     fun changePage(isPrev: Boolean) {
@@ -56,21 +55,26 @@ class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarV
 
     private fun setCalendar() {
         setRecyclerView()
+
         //캘린더 만들기
         val mCalendar = Calendar.getInstance()
         val mPrevCalendar = Calendar.getInstance()
         val mNextCalendar = Calendar.getInstance()
         val mInstanceCal = Calendar.getInstance()
+
         //날짜 셋팅
         val date = Date(timeByMillis)
+
         //현재 캘린더의 년, 월, 일
         val year = yearFormat.format(date)
         val month = monthFormat.format(date)
         val day = dateFormat.format(date)
+
         //오늘의 년, 월, 일
         val toMonth = monthFormat.format(System.currentTimeMillis())
         val toYear = yearFormat.format(System.currentTimeMillis())
         val toDay = dateFormat.format(System.currentTimeMillis())
+
         //캘린터 설정
         mCalendar.set(year.toInt(), month.toInt() - 1, 1)
         if (month.toInt() - 1 == 1) {
@@ -83,7 +87,8 @@ class CalendarPageFragment : BaseFragment<FragmentCalendarPageBinding, CalendarV
             mPrevCalendar.set(year.toInt(), month.toInt() - 2, 1)
             mNextCalendar.set(year.toInt(), month.toInt(), 1)
         }
-        //캘린더 줄 수
+
+        //캘린더 줄 수 설정
         val lines: Int
         if (mCalendar.getActualMaximum(Calendar.DAY_OF_MONTH) == 28) {
             if (mCalendar.get(Calendar.DAY_OF_WEEK) == 1)

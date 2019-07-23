@@ -3,13 +3,12 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools">
 
-    <item android:id="@+id/menu_main_notice"
-          android:title="Notice"
-          android:icon="@drawable/alarm"
+    <item android:id="@+id/menu_cal_detail_edit"
+          android:title="수정"
           app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/menu_main_cal_share"
-          android:title="@string/menu_cal_share"
+    <item android:id="@+id/menu_cal_detail_delete"
+          android:title="삭제"
           app:showAsAction="ifRoom" />
 
 </menu>

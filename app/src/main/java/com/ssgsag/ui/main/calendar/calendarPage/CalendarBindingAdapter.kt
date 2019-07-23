@@ -54,32 +54,19 @@ fun setDate(view: TextView, date: Date) {
 
 @BindingAdapter("date", "position")
 fun setSchedule(view: CardView, date: Date, position: Int) {
-
     date.schedule?.let {
         if (it.size > position) {
             view.visibility = View.VISIBLE
-            if(date.schedule!![position].isEnded == 1)
+            if (date.schedule!![position].isEnded == 1)
                 view.setCardBackgroundColor(view.context.getColor(R.color.passive))
             else {
                 when (date.schedule!![position].categoryIdx) {
-                    0 -> {
-                        view.setCardBackgroundColor(view.context.getColor(R.color.contest))
-                    }
-                    1 -> {
-                        view.setCardBackgroundColor(view.context.getColor(R.color.act))
-                    }
-                    2, 6, 7 -> {
-                        view.setCardBackgroundColor(view.context.getColor(R.color.club))
-                    }
-                    3 -> {
-                        view.setCardBackgroundColor(view.context.getColor(R.color.notice))
-                    }
-                    4 -> {
-                        view.setCardBackgroundColor(view.context.getColor(R.color.recruit))
-                    }
-                    5 -> {
-                        view.setCardBackgroundColor(view.context.getColor(R.color.etcText))
-                    }
+                    0 -> view.setCardBackgroundColor(view.context.getColor(R.color.contest))
+                    1 -> view.setCardBackgroundColor(view.context.getColor(R.color.act))
+                    2, 6, 7 -> view.setCardBackgroundColor(view.context.getColor(R.color.club))
+                    3 -> view.setCardBackgroundColor(view.context.getColor(R.color.notice))
+                    4 -> view.setCardBackgroundColor(view.context.getColor(R.color.recruit))
+                    5 -> view.setCardBackgroundColor(view.context.getColor(R.color.etcText))
                 }
             }
         } else

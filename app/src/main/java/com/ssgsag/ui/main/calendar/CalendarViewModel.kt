@@ -8,13 +8,16 @@ import com.ssgsag.data.model.category.Category
 import com.ssgsag.data.model.schedule.Schedule
 import com.ssgsag.data.model.schedule.ScheduleRepository
 import com.ssgsag.util.scheduler.SchedulerProvider
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CalendarViewModel(
     private val repository: ScheduleRepository
     , private val schedulerProvider: SchedulerProvider
 ) : BaseViewModel() {
 
-    val calendarByDate = ArrayList<Schedule>()
+    val scheduleByDate = ArrayList<Schedule>()
+
     private val defaultSet = arrayListOf(
         Category(-2, true),
         Category(-1, false),
@@ -29,8 +32,8 @@ class CalendarViewModel(
     private val _isProgress = MutableLiveData<Int>()
     val isProgress: LiveData<Int> get() = _isProgress
 
-    private val _calendar = MutableLiveData<ArrayList<Schedule>>()
-    val schedule: LiveData<ArrayList<Schedule>> get() = _calendar
+    private val _schedule = MutableLiveData<ArrayList<Schedule>>()
+    val schedule: LiveData<ArrayList<Schedule>> get() = _schedule
 
     private val _categorySort = MutableLiveData<ArrayList<Category>>().apply { postValue(defaultSet) }
     val categorySort: LiveData<ArrayList<Category>> get() = _categorySort
@@ -40,18 +43,22 @@ class CalendarViewModel(
     }
 
     fun getCalendar(year: String, month: String): ArrayList<Schedule> {
-        calendarByDate.clear()
+        val cal = Calendar.getInstance()
+        cal.set(year.toInt(), month.toInt(), 1)
+        val endDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
+
+        scheduleByDate.clear()
 
         schedule.value?.let {
             for (i in it.indices) {
                 if (it[i].posterEndDate.substring(0, 4) == year
                     && it[i].posterEndDate.substring(5, 7) == month
                 ) {
-                    calendarByDate.add(it[i])
+                    scheduleByDate.add(it[i])
                 }
             }
         }
-        return calendarByDate
+        return scheduleByDate
     }
 
     //코드 수정 필요 ㅎㅎ;;;
@@ -112,7 +119,7 @@ class CalendarViewModel(
                 .doOnTerminate { hideProgress() }
                 .subscribe({
                     it.run {
-                        _calendar.postValue(this)
+                        _schedule.postValue(this)
                     }
                 }, {
 
