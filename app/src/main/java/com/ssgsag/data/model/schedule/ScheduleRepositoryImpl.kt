@@ -12,4 +12,12 @@ class ScheduleRepositoryImpl(val api: NetworkService, val pref: PreferenceManage
     override fun getCalendar(year: String, month: String, date: String): Single<ArrayList<Schedule>> = api
         .calendarResponse(pref.findPreference("TOKEN", ""), year, month, date)
         .map { it.data }
+
+    override fun bookmarkSchedule(posterIdx: Int): Single<Int> = api
+        .bookmarkPoster(pref.findPreference("TOKEN", ""), posterIdx)
+        .map { it.status }
+
+    override fun unbookmarkSchedule(posterIdx: Int): Single<Int> = api
+        .unbookmarkPoster(pref.findPreference("TOKEN", ""), posterIdx)
+        .map { it.status }
 }

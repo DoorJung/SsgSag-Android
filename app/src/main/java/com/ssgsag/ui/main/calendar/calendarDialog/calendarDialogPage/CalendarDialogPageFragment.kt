@@ -3,6 +3,7 @@ package com.ssgsag.ui.main.calendar.calendarDialog.calendarDialogPage
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.ssgsag.BR
 import com.ssgsag.R
 import com.ssgsag.base.BaseFragment
@@ -18,8 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CalendarDialogPageFragment : BaseFragment<FragmentCalendarDialogPageBinding, CalendarDialogPageViewModel>(),
-    BaseRecyclerViewAdapter.OnItemClickListener {
+class CalendarDialogPageFragment : BaseFragment<FragmentCalendarDialogPageBinding, CalendarDialogPageViewModel>() {
 
     override val layoutResID: Int
         get() = R.layout.fragment_calendar_dialog_page
@@ -30,6 +30,17 @@ class CalendarDialogPageFragment : BaseFragment<FragmentCalendarDialogPageBindin
     private var month = ""
     private var day = ""
     private val calendar = Calendar.getInstance()
+
+
+    private val onScheduleItemClickListener =
+        object : CalendarDialogPageRecyclerViewAdapter.OnScheduleItemClickListener {
+            override fun onItemClicked(posterIdx: Int) = viewModel.navigate(posterIdx)
+
+            override fun onBookmarkClicked(posterIdx: Int, isFavorite: Int) {
+                viewModel.bookmark(posterIdx, isFavorite, year, month, day)
+            }
+        }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -43,8 +54,13 @@ class CalendarDialogPageFragment : BaseFragment<FragmentCalendarDialogPageBindin
             startActivity(intent)
         })
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         setSchedule()
-        setRecyclerView()
+        setScheduleRv()
     }
 
     fun setTimeByMillis(timeByMillis: Long) {
@@ -69,20 +85,27 @@ class CalendarDialogPageFragment : BaseFragment<FragmentCalendarDialogPageBindin
         viewModel.getSchedule(year, month, day)
     }
 
-    private fun setRecyclerView() {
-        viewDataBinding.fragCalendarDialogPageRv.adapter =
-            object : BaseRecyclerViewAdapter<Schedule, ItemCalendarScheduleBinding>() {
-                override val layoutResID: Int
-                    get() = R.layout.item_calendar_schedule
-                override val bindingVariableId: Int
-                    get() = BR.schedule
-                override val listener: OnItemClickListener?
-                    get() = this@CalendarDialogPageFragment
-            }
-    }
+    private fun setScheduleRv() {
+        viewDataBinding.fragCalendarDialogPageRv.apply {
+            viewModel.schedule.observe(this@CalendarDialogPageFragment, Observer { value ->
+                if (adapter != null) {
+                    (this.adapter as CalendarDialogPageRecyclerViewAdapter).apply {
+                        replaceAll(value)
+                        notifyItemRangeChanged(0, value.size)
 
-    override fun onItemClicked(item: Any?) {
-        viewModel.navigate((item as Schedule).posterIdx)
+                    }
+                } else {
+                    adapter =
+                        CalendarDialogPageRecyclerViewAdapter(value).apply {
+                            setOnScheduleItemClickListener(onScheduleItemClickListener)
+                        }
+                    (this.itemAnimator as SimpleItemAnimator).run {
+                        changeDuration = 0
+                        supportsChangeAnimations = false
+                    }
+                }
+            })
+        }
     }
 
     companion object {

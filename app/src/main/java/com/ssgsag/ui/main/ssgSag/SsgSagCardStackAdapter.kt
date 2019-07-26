@@ -10,6 +10,7 @@ import com.ssgsag.databinding.ItemSsgsagBinding
 import com.ssgsag.util.view.NonScrollLinearLayoutManager
 
 class SsgSagCardStackAdapter(val ctx: Context) :
+
     RecyclerView.Adapter<SsgSagCardStackAdapter.ViewHolder>() {
 
     private var itemTouch: Boolean = false

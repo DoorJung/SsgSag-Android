@@ -31,6 +31,16 @@ fun setCommentUserImg(view: ImageView, imgUrl: String?) {
         .into(view)
 }
 
+@BindingAdapter("bookmarkBtnImg")
+fun setBookmarkBtnImg(view: ImageView, isFavorite: Int?) {
+    isFavorite?.run {
+        if (isFavorite == 1)
+            view.setImageResource(R.drawable.favorite_white_box)
+        else
+            view.setImageResource(R.drawable.favorite_white_box_passive)
+    }
+}
+
 @BindingAdapter("likeBtnSrc")
 fun setLikeBtnSrc(view: ImageView, isLike: Int?) {
     isLike?.run {

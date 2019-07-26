@@ -34,7 +34,7 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
         }
 
         override fun onDeleteClicked(commentIdx: Int, position: Int) {
-            commentBehaviorNum = 4
+            commentBehaviorNum = 3
             viewModel.deleteComment(commentIdx, posterIdx)
         }
 
@@ -51,16 +51,16 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewDataBinding.vm = viewModel
-        viewDataBinding.actCalDetailRv.layoutManager = NonScrollLinearLayoutManager(this)
 
+        //getIdx
+        posterIdx = intent.getIntExtra("Idx", 0)
+        viewModel.getPosterDetail(posterIdx)
         //ui
         setToolbar()
         setPosterDetailRv()
         setCommentRv()
         writeComment()
-        //getIdx
-        posterIdx = intent.getIntExtra("Idx", 0)
-        viewModel.getPosterDetail(posterIdx)
+        bookmarkPoster()
     }
 
     private fun setToolbar() {
@@ -84,6 +84,7 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
                     override val listener: OnItemClickListener?
                         get() = null
                 }
+            layoutManager = NonScrollLinearLayoutManager(this@CalendarDetailActivity)
         }
     }
 
@@ -93,11 +94,11 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
                 if (adapter != null) {
                     (this.adapter as CommentRecyclerViewAdapter).apply {
                         replaceAll(value.commentList)
-                        if (commentBehaviorNum == 4) {
+                        if (commentBehaviorNum == 3) {
                             notifyDataSetChanged()
                             commentBehaviorNum = 0
                         } else {
-                            notifyItemRangeChanged(0, value.commentList.size - 1)
+                            notifyItemRangeChanged(0, value.commentList.size)
                         }
                     }
                     if (commentBehaviorNum == 1) {
@@ -132,6 +133,12 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
             commentBehaviorNum = 1
             viewModel.writeComment(viewDataBinding.actCalDetailEtComment.text.toString(), posterIdx)
             viewDataBinding.actCalDetailEtComment.setText("")
+        }
+    }
+
+    private fun bookmarkPoster() {
+        viewDataBinding.actCalDetailIvBookmark.setOnClickListener {
+            viewModel.bookmark(posterIdx)
         }
     }
 

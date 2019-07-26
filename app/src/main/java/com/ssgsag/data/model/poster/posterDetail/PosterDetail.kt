@@ -28,9 +28,10 @@ data class PosterDetail(
     val chargerName: String?,
     val partnerPhone: String?,
     val partnerEmail: String?,
-    val favoriteNum: Int,
-    val likeNum: Int,
+    val favoriteNum: String,
+    val likeNum: String,
     val analytics: Analytics,
     val commentList: ArrayList<Comment>,
-    val dday: String
+    val dday: String,
+    val isFavorite: Int
 )

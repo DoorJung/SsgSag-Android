@@ -32,7 +32,7 @@ class SubscribeActivity : BaseActivity<ActivitySubscribeBinding, SubscribeViewMo
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
 
-        setRecyclerViewAdapter();
+        setRecyclerViewAdapter()
     }
 
     private fun setRecyclerViewAdapter() {
@@ -63,8 +63,6 @@ class SubscribeActivity : BaseActivity<ActivitySubscribeBinding, SubscribeViewMo
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
-
 
     companion object {
         private val TAG = "SubscribeActivity"

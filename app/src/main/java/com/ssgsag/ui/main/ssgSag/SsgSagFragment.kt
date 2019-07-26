@@ -48,9 +48,9 @@ class SsgSagFragment : BaseFragment<FragmentSsgSagBinding, SsgSagViewModel>() {
         override fun onCardDragging(direction: Direction?, ratio: Float) {}
         override fun onCardSwiped(direction: Direction?) {
             if (direction == Direction.Right) {
-                viewModel.selectIsLike(viewModel.allPosters.value!![position].posterIdx, 1)
+                viewModel.ssgSag(viewModel.allPosters.value!![position].posterIdx, 1)
             } else if (direction == Direction.Left) {
-                viewModel.selectIsLike(viewModel.allPosters.value!![position].posterIdx, 0)
+                viewModel.ssgSag(viewModel.allPosters.value!![position].posterIdx, 0)
             }
             position++
         }

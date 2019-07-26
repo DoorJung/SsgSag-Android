@@ -38,9 +38,9 @@ class SsgSagViewModel(
         )
     }
 
-    fun selectIsLike(posterIdx: Int, like: Int) {
+    fun ssgSag(posterIdx: Int, like: Int) {
         addDisposable(
-            repository.likePoster(posterIdx, like)
+            repository.ssgSag(posterIdx, like)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.mainThread())
                 .subscribe({

@@ -23,6 +23,7 @@
                 android:layout_height="match_parent">
 
             <RelativeLayout
+                    tools:visibility="gone"
                     android:id="@+id/item_ssgsag_rl_left_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

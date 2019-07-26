@@ -35,7 +35,6 @@
                     android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="11dp"
                     android:orientation="vertical"
                     android:layout_weight="1">
 
@@ -82,11 +81,12 @@
             <ImageView
                     android:id="@+id/item_calendar_schedule_iv_like"
                     android:layout_gravity="center_vertical|end"
-                    android:src="@drawable/selector_navigation_ssg_sag"
-                    android:layout_width="20dp"
-                    android:layout_height="16.3dp"
-                    android:layout_marginStart="11dp"
-                    android:layout_marginEnd="17dp"/>
+                    android:src="@drawable/favorite_passive"
+                    android:scaleType="center"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    app:bookmarkBtnImgInDialog="@{schedule.isFavorite}"/>
 
         </LinearLayout>
 

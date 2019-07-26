@@ -88,7 +88,7 @@ interface NetworkService {
     ): Single<PosterDetailResponse>
     //포스터 좋아요/싫어요
     @POST("/poster/like")
-    fun posterLikeResponse(
+    fun posterSsgSagResponse(
         @Header("Authorization") token: String,
         @Query("posterIdx") posterIdx: Int,
         @Query("like") like: Int
@@ -108,6 +108,17 @@ interface NetworkService {
     //일정 삭제
     //일정 지원 완료 조회
     //일정 지원 즐겨찾기
+    @POST("/todo/favorite/{posterIdx}")
+    fun bookmarkPoster(
+        @Header("Authorization") token: String,
+        @Path("posterIdx") posterIdx : Int
+    ): Single<ScheduleResponse>
+    //일정 지원 즐겨찾기 해제
+    @DELETE("/todo/favorite/{posterIdx}")
+    fun unbookmarkPoster(
+        @Header("Authorization") token: String,
+        @Path("posterIdx") posterIdx : Int
+    ): Single<ScheduleResponse>
     //endregion
 
     //region 이력

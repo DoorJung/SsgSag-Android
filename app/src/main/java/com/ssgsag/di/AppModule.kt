@@ -73,7 +73,7 @@ val viewModule = module {
     viewModel { CalendarViewModel(get(), get()) }
     viewModel { CalendarDialogViewModel() }
     viewModel { CalendarDialogPageViewModel(get(), get()) }
-    viewModel { CalendarDetailViewModel(get(), get()) }
+    viewModel { CalendarDetailViewModel(get(), get(), get()) }
 }
 
 val appModule = listOf(rxModule, networkModule, localModule, factoryModule, viewModule)

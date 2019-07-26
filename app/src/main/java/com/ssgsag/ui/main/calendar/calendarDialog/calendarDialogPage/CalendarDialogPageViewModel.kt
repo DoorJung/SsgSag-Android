@@ -9,6 +9,7 @@ import com.ssgsag.data.model.schedule.Schedule
 import com.ssgsag.data.model.schedule.ScheduleRepository
 import com.ssgsag.ui.main.calendar.calendarDetail.CalendarDetailActivity
 import com.ssgsag.util.scheduler.SchedulerProvider
+import io.reactivex.Single
 import kotlin.reflect.KClass
 
 class CalendarDialogPageViewModel(
@@ -33,6 +34,25 @@ class CalendarDialogPageViewModel(
                 it.run {
                     _schedule.postValue(this)
                 }
+            }, {
+
+            })
+        )
+    }
+
+    fun bookmark(posterIdx: Int, isFavorite: Int, year: String, month: String, date: String) {
+        lateinit var response: Single<Int>
+
+        if(isFavorite == 0) response = repository.bookmarkSchedule(posterIdx)
+        else if(isFavorite == 1) response = repository.unbookmarkSchedule(posterIdx)
+
+        addDisposable(response
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.mainThread())
+            .doOnSubscribe { showProgress() }
+            .doOnTerminate { hideProgress() }
+            .subscribe({
+                getSchedule(year, month, date)
             }, {
 
             })

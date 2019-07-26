@@ -8,11 +8,14 @@ import com.google.gson.JsonParser
 import com.ssgsag.base.BaseViewModel
 import com.ssgsag.data.model.poster.PosterRepository
 import com.ssgsag.data.model.poster.posterDetail.PosterDetail
+import com.ssgsag.data.model.schedule.ScheduleRepository
 import com.ssgsag.util.scheduler.SchedulerProvider
+import io.reactivex.Single
 import org.json.JSONObject
 
 class CalendarDetailViewModel(
-    private val repository: PosterRepository,
+    private val posterRepository: PosterRepository,
+    private val scheduleRepository: ScheduleRepository,
     private val schedulerProvider: SchedulerProvider
 ) : BaseViewModel() {
 
@@ -22,7 +25,7 @@ class CalendarDetailViewModel(
     val posterDetail: LiveData<PosterDetail> get() = _posterDetail
 
     fun getPosterDetail(posterIdx: Int) {
-        addDisposable(repository.getPoster(posterIdx)
+        addDisposable(posterRepository.getPoster(posterIdx)
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.mainThread())
             .doOnSubscribe { showProgress() }
@@ -37,6 +40,7 @@ class CalendarDetailViewModel(
         )
     }
 
+    //region comment
     fun writeComment(commentContent: String, posterIdx: Int) {
         val jsonObject = JSONObject()
         jsonObject.put("posterIdx", posterIdx)
@@ -44,7 +48,7 @@ class CalendarDetailViewModel(
 
         val body = JsonParser().parse(jsonObject.toString()) as JsonObject
 
-        addDisposable(repository.writeComment(body)
+        addDisposable(posterRepository.writeComment(body)
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.mainThread())
             .doOnSubscribe { showProgress() }
@@ -64,7 +68,7 @@ class CalendarDetailViewModel(
 
         val body = JsonParser().parse(jsonObject.toString()) as JsonObject
 
-        addDisposable(repository.editComment(body)
+        addDisposable(posterRepository.editComment(body)
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.mainThread())
             .doOnSubscribe { showProgress() }
@@ -78,7 +82,7 @@ class CalendarDetailViewModel(
     }
 
     fun deleteComment(commentIdx: Int, posterIdx: Int) {
-        addDisposable(repository.deleteComment(commentIdx)
+        addDisposable(posterRepository.deleteComment(commentIdx)
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.mainThread())
             .doOnSubscribe { showProgress() }
@@ -92,7 +96,29 @@ class CalendarDetailViewModel(
     }
 
     fun likeComment(commentIdx: Int, like: Int, posterIdx: Int) {
-        addDisposable(repository.likeComment(commentIdx, like)
+        addDisposable(posterRepository.likeComment(commentIdx, like)
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.mainThread())
+            .doOnSubscribe { showProgress() }
+            .doOnTerminate { hideProgress() }
+            .subscribe({
+                getPosterDetail(posterIdx)
+            }, {
+
+            })
+        )
+    }
+    //endregion
+
+
+
+    fun bookmark(posterIdx: Int) {
+        lateinit var response: Single<Int>
+
+        if(posterDetail.value?.isFavorite == 0) response = scheduleRepository.bookmarkSchedule(posterIdx)
+        else if(posterDetail.value?.isFavorite == 1) response = scheduleRepository.unbookmarkSchedule(posterIdx)
+
+        addDisposable(response
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.mainThread())
             .doOnSubscribe { showProgress() }

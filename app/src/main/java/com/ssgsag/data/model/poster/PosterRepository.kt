@@ -8,7 +8,7 @@ import io.reactivex.Single
 interface PosterRepository {
     //poster
     fun getAllPosters(): Single<ArrayList<PosterDetail>>
-    fun likePoster(posterIdx: Int, like: Int): Single<Int>
+    fun ssgSag(posterIdx: Int, like: Int): Single<Int>
     fun getPoster(posterIdx: Int): Single<PosterDetail>
     //comment
     fun writeComment(body: JsonObject): Single<Int>
