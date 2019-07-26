@@ -9,6 +9,7 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.ssgsag.R
@@ -71,6 +72,19 @@ fun setSchedule(view: CardView, date: Date, position: Int) {
             }
         } else
             view.visibility = View.INVISIBLE
+    }
+}
+
+@BindingAdapter("date", "position")
+fun setBookmarkBtnImgInCal(view: ImageView, date: Date, position: Int) {
+    date.schedule?.let {
+        if (it.size > position) {
+            if (it[position].isFavorite == 1)
+                view.visibility = View.VISIBLE
+            else
+                view.visibility = View.GONE
+        } else
+            view.visibility = View.GONE
     }
 }
 

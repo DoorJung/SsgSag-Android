@@ -207,12 +207,6 @@
 
                 </androidx.recyclerview.widget.RecyclerView>
 
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginHorizontal="14dp"
-                        android:background="#dcdcdb"/>
-
                 <LinearLayout
                         android:id="@+id/act_cal_detail_ll_manager"
                         android:layout_width="match_parent"
@@ -394,12 +388,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#dcdcdb"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                        android:layout_marginHorizontal="18dp"
-                        android:id="@+id/act_cal_detail_rv_comment"
+                <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            tools:visibility="gone"
+                            android:layout_marginHorizontal="18dp"
+                            android:id="@+id/act_cal_detail_rv_comment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    <TextView
+                            app:noDataDirective="@{vm.posterDetail.commentList}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="16dp"
+                            android:layout_marginStart="30dp"
+                            android:textSize="10sp"
+                            android:textColor="#d7d8d8"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="8sp"
+                            android:text="등록된 댓글이 없습니다."
+                            android:fontFamily="@font/noto_sans_kr_regular"/>
+
+
+                </FrameLayout>
 
 
             </LinearLayout>

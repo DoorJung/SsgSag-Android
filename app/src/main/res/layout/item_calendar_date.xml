@@ -40,6 +40,7 @@
             <androidx.cardview.widget.CardView
                     app:date="@{date}"
                     app:position="@{0}"
+                    tools:visibility="visible"
                     android:visibility="invisible"
                     android:id="@+id/item_date_cv_schedule_1"
                     android:layout_marginBottom="1dp"
@@ -50,25 +51,44 @@
                     app:cardCornerRadius="2dp"
                     app:cardBackgroundColor="@color/contest">
 
-                <TextView
-                        android:layout_marginStart="3dp"
-                        tools:text="월별공모"
-                        app:date="@{date}"
-                        app:position="@{0}"
-                        android:fontFamily="@font/noto_sans_kr_regular"
-                        android:gravity="center_vertical"
-                        android:id="@+id/item_date_tv_schedule_1_text"
-                        android:textColor="@color/white"
-                        android:textSize="8sp"
-                        android:maxLines="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"/>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            tools:visibility="visible"
+                            app:date="@{date}"
+                            app:position="@{0}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/calendar_favorite"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="4dp"/>
+
+                    <TextView
+                            android:layout_marginStart="2dp"
+                            tools:text="월별공모"
+                            app:date="@{date}"
+                            app:position="@{0}"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:gravity="center_vertical"
+                            android:id="@+id/item_date_tv_schedule_1_text"
+                            android:textColor="@color/white"
+                            android:textSize="8sp"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                     app:date="@{date}"
                     app:position="@{1}"
+                    tools:visibility="visible"
                     android:visibility="invisible"
                     android:id="@+id/item_date_cv_schedule_2"
                     android:layout_marginBottom="1dp"
@@ -79,25 +99,45 @@
                     app:cardCornerRadius="2dp"
                     app:cardBackgroundColor="@color/contest">
 
-                <TextView
-                        android:layout_marginStart="3dp"
-                        tools:text="월별공모"
-                        app:date="@{date}"
-                        app:position="@{1}"
-                        android:fontFamily="@font/noto_sans_kr_regular"
-                        android:gravity="center_vertical"
-                        android:id="@+id/item_date_tv_schedule_2_text"
-                        android:textColor="@color/white"
-                        android:textSize="8sp"
-                        android:maxLines="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"/>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            tools:visibility="visible"
+                            app:date="@{date}"
+                            app:position="@{1}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/calendar_favorite"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="4dp"/>
+
+                    <TextView
+                            android:layout_marginStart="2dp"
+                            tools:text="월별공모"
+                            app:date="@{date}"
+                            app:position="@{1}"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:id="@+id/item_date_tv_schedule_2_text"
+                            android:textColor="@color/white"
+                            android:textSize="8sp"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                     app:date="@{date}"
                     app:position="@{2}"
+                    tools:visibility="visible"
                     android:visibility="invisible"
                     android:id="@+id/item_date_cv_schedule_3"
                     android:layout_marginBottom="1dp"
@@ -108,25 +148,44 @@
                     app:cardCornerRadius="2dp"
                     app:cardBackgroundColor="@color/contest">
 
-                <TextView
-                        android:layout_marginStart="3dp"
-                        tools:text="월별공모"
-                        app:date="@{date}"
-                        app:position="@{2}"
-                        android:fontFamily="@font/noto_sans_kr_regular"
-                        android:gravity="center_vertical"
-                        android:id="@+id/item_date_tv_schedule_3_text"
-                        android:textColor="@color/white"
-                        android:textSize="8sp"
-                        android:maxLines="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"/>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            tools:visibility="visible"
+                            app:date="@{date}"
+                            app:position="@{2}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/calendar_favorite"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="4dp"/>
+
+                    <TextView
+                            android:layout_marginStart="2dp"
+                            tools:text="월별공모"
+                            app:date="@{date}"
+                            app:position="@{2}"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:gravity="center_vertical"
+                            android:id="@+id/item_date_tv_schedule_3_text"
+                            android:textColor="@color/white"
+                            android:textSize="8sp"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                     app:date="@{date}"
                     app:position="@{3}"
+                    tools:visibility="visible"
                     android:visibility="invisible"
                     android:id="@+id/item_date_cv_schedule_4"
                     android:layout_marginBottom="1dp"
@@ -137,19 +196,37 @@
                     app:cardCornerRadius="2dp"
                     app:cardBackgroundColor="@color/contest">
 
-                <TextView
-                        android:layout_marginStart="3dp"
-                        tools:text="월별공모"
-                        app:date="@{date}"
-                        app:position="@{3}"
-                        android:fontFamily="@font/noto_sans_kr_regular"
-                        android:gravity="center_vertical"
-                        android:id="@+id/item_date_tv_schedule_4_text"
-                        android:textColor="@color/white"
-                        android:textSize="8sp"
-                        android:maxLines="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"/>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            tools:visibility="visible"
+                            app:date="@{date}"
+                            app:position="@{3}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/calendar_favorite"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="4dp"/>
+
+                    <TextView
+                            android:layout_marginStart="2dp"
+                            tools:text="월별공모"
+                            app:date="@{date}"
+                            app:position="@{3}"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:gravity="center_vertical"
+                            android:id="@+id/item_date_tv_schedule_4_text"
+                            android:textColor="@color/white"
+                            android:textSize="8sp"
+                            android:maxLines="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
