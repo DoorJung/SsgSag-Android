@@ -44,4 +44,6 @@ abstract class BaseDialogFragment<T : ViewDataBinding, E : BaseViewModel> : Dial
         transaction.addToBackStack(null)
         show(transaction, tag)
     }
+
+
 }

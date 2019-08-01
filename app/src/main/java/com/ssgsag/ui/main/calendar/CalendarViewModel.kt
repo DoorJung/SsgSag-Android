@@ -110,7 +110,7 @@ class CalendarViewModel(
         }
     }
 
-    private fun getAllCalendar(isInit: Boolean) {
+    fun getAllCalendar(isInit: Boolean) {
         if (isInit) {
             addDisposable(repository.getAllCalendar()
                 .subscribeOn(schedulerProvider.io())
@@ -126,6 +126,22 @@ class CalendarViewModel(
                 })
             )
         }
+    }
+
+    fun getCurrentMonthCalendar(year: String, month: String, date: String) {
+            addDisposable(repository.getCalendar(year, month, date)
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.mainThread())
+                .doOnSubscribe { showProgress() }
+                .doOnTerminate { hideProgress() }
+                .subscribe({
+                    it.run {
+                        _schedule.postValue(this)
+                    }
+                }, {
+
+                })
+            )
     }
 
     private fun showProgress() {

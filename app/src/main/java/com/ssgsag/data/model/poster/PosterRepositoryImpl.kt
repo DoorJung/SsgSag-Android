@@ -36,4 +36,8 @@ class PosterRepositoryImpl(val api: NetworkService, val pref: PreferenceManager)
     override fun likeComment(commentIdx: Int, like: Int): Single<Int> = api
         .likeComment(pref.findPreference("TOKEN", ""), commentIdx, like)
         .map { it.status }
+
+    override fun cautionComment(commentIdx: Int): Single<Int> = api
+        .cautionComment(pref.findPreference("TOKEN", ""), commentIdx)
+        .map { it.status }
 }

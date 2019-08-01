@@ -168,6 +168,12 @@ interface NetworkService {
         @Path("commentIdx") commentIdx : Int,
         @Path("like") like : Int
     ): Single<NullDataResponse>
+    //댓글 신고
+    @POST("/comment/caution/{commentIdx}")
+    fun cautionComment(
+        @Header("Authorization") token: String,
+        @Path("commentIdx") commentIdx : Int
+    ): Single<NullDataResponse>
     //endregion
 
     companion object {

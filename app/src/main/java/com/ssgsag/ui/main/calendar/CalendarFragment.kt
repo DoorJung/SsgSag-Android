@@ -53,7 +53,6 @@ class CalendarFragment : BaseFragment<FragmentCalendarBinding, CalendarViewModel
         viewDataBinding.fragCalendarVpPage.run {
             adapter = calendarPagerAdapter
             currentItem = COUNT_PAGE
-            offscreenPageLimit = 2
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 

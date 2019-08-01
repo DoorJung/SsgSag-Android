@@ -44,6 +44,10 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
             else
                 viewModel.likeComment(commentIdx, 0, posterIdx)
         }
+
+        override fun onDeclareClicked(commentIdx: Int) {
+            viewModel.cautionComment(commentIdx, posterIdx)
+        }
     }
 
     private var posterIdx: Int = 0

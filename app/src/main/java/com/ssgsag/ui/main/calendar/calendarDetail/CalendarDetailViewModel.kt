@@ -108,6 +108,20 @@ class CalendarDetailViewModel(
             })
         )
     }
+
+    fun cautionComment(commentIdx: Int, posterIdx: Int) {
+        addDisposable(posterRepository.cautionComment(commentIdx)
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.mainThread())
+            .doOnSubscribe { showProgress() }
+            .doOnTerminate { hideProgress() }
+            .subscribe({
+                getPosterDetail(posterIdx)
+            }, {
+
+            })
+        )
+    }
     //endregion
 
 

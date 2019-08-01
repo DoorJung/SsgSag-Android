@@ -15,5 +15,5 @@ interface PosterRepository {
     fun editComment(body: JsonObject): Single<Int>
     fun deleteComment(commentIdx: Int): Single<Int>
     fun likeComment(commentIdx: Int, like: Int): Single<Int>
-
+    fun cautionComment(commentIdx: Int): Single<Int>
 }

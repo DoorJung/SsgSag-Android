@@ -48,10 +48,19 @@ class CommentRecyclerViewAdapter(
         holder.dataBinding.itemCalDetailCommentIvMore.let {
             it.setOnClickListener {
                 val popup = PopupMenu(ctx, it)
-                val inflater = popup.getMenuInflater()
-                val menu = popup.getMenu()
+                val inflater = popup.menuInflater
+                val menu = popup.menu
 
                 inflater.inflate(R.menu.menu_cal_detail_comment, menu)
+                if(items[position].isMine == 1) {
+                    menu.findItem(R.id.menu_cal_detail_edit).setVisible(true)
+                    menu.findItem(R.id.menu_cal_detail_delete).setVisible(true)
+                    menu.findItem(R.id.menu_cal_detail_caution).setVisible(false)
+                } else {
+                    menu.findItem(R.id.menu_cal_detail_edit).setVisible(false)
+                    menu.findItem(R.id.menu_cal_detail_delete).setVisible(false)
+                    menu.findItem(R.id.menu_cal_detail_caution).setVisible(true)
+                }
 
                 popup.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
                     override fun onMenuItemClick(item: MenuItem): Boolean {
@@ -73,6 +82,7 @@ class CommentRecyclerViewAdapter(
         fun onEditClicked(commentIdx: Int)
         fun onDeleteClicked(commentIdx: Int, position: Int)
         fun onLikeClicked(commentIdx: Int, like: Int)
+        fun onDeclareClicked(commentIdx: Int)
     }
 
 

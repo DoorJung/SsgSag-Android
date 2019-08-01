@@ -1,6 +1,9 @@
 package com.ssgsag.ui.main.calendar.calendarDialog
 
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 import com.ssgsag.R
@@ -22,6 +25,44 @@ class CalendarDialogFragment : BaseDialogFragment<DialogFragmentCalendarBinding,
     var date = 0
 
     lateinit var calendarDialogPagerAdapter: CalendarDialogPagerAdapter
+    lateinit var listener: OnDialogDismissedListener
+
+    fun setOnDialogDismissedListener(listener: OnDialogDismissedListener) {
+        this.listener = listener
+    }
+
+    interface OnDialogDismissedListener {
+        fun onDialogDismissed()
+    }
+
+    override fun dismiss() {
+        listener.onDialogDismissed()
+        super.dismiss()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        dialog!!.setOnKeyListener(object : DialogInterface.OnKeyListener {
+            override fun onKey(
+                dialog: DialogInterface, keyCode: Int,
+                event: KeyEvent
+            ): Boolean {
+
+                return if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    //This is the filter
+                    if (event.action != KeyEvent.ACTION_DOWN)
+                        true
+                    else {
+                        listener.onDialogDismissed()
+                        dismiss()
+                        true // pretend we've processed it
+                    }
+                } else
+                    false // pass on to be processed as normal
+            }
+        })
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

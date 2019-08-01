@@ -31,7 +31,6 @@ class CalendarDialogPageFragment : BaseFragment<FragmentCalendarDialogPageBindin
     private var day = ""
     private val calendar = Calendar.getInstance()
 
-
     private val onScheduleItemClickListener =
         object : CalendarDialogPageRecyclerViewAdapter.OnScheduleItemClickListener {
             override fun onItemClicked(posterIdx: Int) = viewModel.navigate(posterIdx)
