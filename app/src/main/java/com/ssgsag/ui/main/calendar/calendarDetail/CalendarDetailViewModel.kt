@@ -63,7 +63,7 @@ class CalendarDetailViewModel(
 
     fun editComment(commentContent: String, commentIdx: Int, posterIdx: Int) {
         val jsonObject = JSONObject()
-        jsonObject.put("posterIdx", commentIdx)
+        jsonObject.put("commentIdx", commentIdx)
         jsonObject.put("commentContent", commentContent)
 
         val body = JsonParser().parse(jsonObject.toString()) as JsonObject

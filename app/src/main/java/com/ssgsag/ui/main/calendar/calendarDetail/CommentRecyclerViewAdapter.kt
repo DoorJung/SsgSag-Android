@@ -65,7 +65,7 @@ class CommentRecyclerViewAdapter(
                 popup.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener {
                     override fun onMenuItemClick(item: MenuItem): Boolean {
                         when (item.itemId) {
-                            R.id.menu_cal_detail_edit -> listener?.onEditClicked(items[position].commentIdx)
+                            R.id.menu_cal_detail_edit -> listener?.onEditClicked(items[position].commentIdx, position)
                             R.id.menu_cal_detail_delete -> listener?.onDeleteClicked(items[position].commentIdx, position)
                         }
                         return false
@@ -79,7 +79,7 @@ class CommentRecyclerViewAdapter(
     inner class ViewHolder(val dataBinding: ItemCalDetailCommentBinding) : RecyclerView.ViewHolder(dataBinding.root)
 
     interface OnCommentItemClickListener {
-        fun onEditClicked(commentIdx: Int)
+        fun onEditClicked(commentIdx: Int, position: Int)
         fun onDeleteClicked(commentIdx: Int, position: Int)
         fun onLikeClicked(commentIdx: Int, like: Int)
         fun onDeclareClicked(commentIdx: Int)

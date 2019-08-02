@@ -14,10 +14,12 @@ import com.ssgsag.R
 import com.ssgsag.base.BaseActivity
 import com.ssgsag.base.BaseRecyclerViewAdapter
 import com.ssgsag.data.model.item.ItemBase
+import com.ssgsag.data.model.poster.posterDetail.comment.Comment
 import com.ssgsag.databinding.ActivityCalendarDetailBinding
 import com.ssgsag.databinding.ItemPosterDetailBinding
 import com.ssgsag.ui.main.calendar.calendarDetail.CommentRecyclerViewAdapter.OnCommentItemClickListener
 import com.ssgsag.util.view.NonScrollLinearLayoutManager
+import org.jetbrains.anko.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, CalendarDetailViewModel>() {
@@ -27,10 +29,22 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
     override val viewModel: CalendarDetailViewModel by viewModel()
     //0: 아무행동 안함, 1: 댓글 쓰기, 2: 댓글 수정, 3: 댓글 삭제, 4: 댓글 추천
     private var commentBehaviorNum = 0
+    private var commentToEdit: Comment? = null
 
     private val onCommentItemClickListener = object : OnCommentItemClickListener {
-        override fun onEditClicked(commentIdx: Int) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        override fun onEditClicked(commentIdx: Int, position: Int) {
+            commentBehaviorNum = 2
+            commentToEdit = viewModel.posterDetail.value?.commentList!![position]
+            viewDataBinding.actCalDetailEtComment.run {
+                setText(commentToEdit?.commentContent)
+                setSelection(text.toString().length)
+            }
+            viewDataBinding.actCalDetailEtComment.post(Runnable {
+                viewDataBinding.actCalDetailEtComment.setFocusableInTouchMode(true)
+                viewDataBinding.actCalDetailEtComment.requestFocus()
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(viewDataBinding.actCalDetailEtComment, 0)
+            })
         }
 
         override fun onDeleteClicked(commentIdx: Int, position: Int) {
@@ -105,18 +119,28 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
                             notifyItemRangeChanged(0, value.commentList.size)
                         }
                     }
-                    if (commentBehaviorNum == 1) {
-                        viewDataBinding.actCalDetailNsv.run {
-                            post(Runnable { fullScroll(View.FOCUS_DOWN) })
+                    when (commentBehaviorNum) {
+                        1 -> {
+                            viewDataBinding.actCalDetailNsv.run {
+                                post(Runnable { fullScroll(View.FOCUS_DOWN) })
+                            }
+                            viewDataBinding.actCalDetailEtComment.post(Runnable {
+                                viewDataBinding.actCalDetailEtComment.setFocusableInTouchMode(true)
+                                viewDataBinding.actCalDetailEtComment.requestFocus()
+                                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                                imm.showSoftInput(viewDataBinding.actCalDetailEtComment, 0)
+                            })
                         }
-                        viewDataBinding.actCalDetailEtComment.post(Runnable {
-                            viewDataBinding.actCalDetailEtComment.setFocusableInTouchMode(true)
-                            viewDataBinding.actCalDetailEtComment.requestFocus()
-                            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                            imm.showSoftInput(viewDataBinding.actCalDetailEtComment, 0)
-                        })
-                        commentBehaviorNum = 0
+                        2 -> {
+                            viewDataBinding.actCalDetailEtComment.post(Runnable {
+                                viewDataBinding.actCalDetailEtComment.setFocusableInTouchMode(true)
+                                viewDataBinding.actCalDetailEtComment.requestFocus()
+                                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                                imm.showSoftInput(viewDataBinding.actCalDetailEtComment, 0)
+                            })
+                        }
                     }
+                    commentBehaviorNum = 0
                 } else {
                     adapter =
                         CommentRecyclerViewAdapter(this@CalendarDetailActivity, value.commentList).apply {
@@ -134,9 +158,26 @@ class CalendarDetailActivity : BaseActivity<ActivityCalendarDetailBinding, Calen
 
     private fun writeComment() {
         viewDataBinding.actCalDetailIvCommentWrite.setOnClickListener {
-            commentBehaviorNum = 1
-            viewModel.writeComment(viewDataBinding.actCalDetailEtComment.text.toString(), posterIdx)
-            viewDataBinding.actCalDetailEtComment.setText("")
+            if (viewDataBinding.actCalDetailEtComment.text.toString().isNotEmpty()) {
+                when (commentBehaviorNum) {
+                    0 -> {
+                        commentBehaviorNum = 1
+                        viewModel.writeComment(viewDataBinding.actCalDetailEtComment.text.toString(), posterIdx)
+                    }
+                    2 -> {
+                        commentToEdit?.let {
+                            viewModel.editComment(
+                                viewDataBinding.actCalDetailEtComment.text.toString(),
+                                it.commentIdx,
+                                posterIdx
+                            )
+                        }
+                    }
+                }
+                viewDataBinding.actCalDetailEtComment.setText("")
+            } else {
+                toast("댓글을 입력해주세요.")
+            }
         }
     }
 
